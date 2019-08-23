@@ -17,7 +17,9 @@ public class UIManager : MonoBehaviour {
     public UIBoolSet UISet;
     
     public List<GameObject> UIList;
-	
+    public List<GameObject> Stage;
+
+
 	void Start () {
         UISet.startAndOption = true;
         UISet.stageSelect = false;
@@ -59,6 +61,10 @@ public class UIManager : MonoBehaviour {
 
 
             case "BattleMenu":
+
+                UIList[2].SetActive(false);
+                UIList[3].SetActive(true);
+
                 break;
             case "PowerUp":
                 break;
@@ -70,4 +76,29 @@ public class UIManager : MonoBehaviour {
                 break;
         }
     }
+
+
+    public void StageClick(string name)
+    {
+        switch (name)
+        {
+            case "Korea":
+                GetStage(0);
+                Debug.Log("한국 스테이지");
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private void GetStage(int num)
+    {
+        Stage[num].SetActive(true);
+
+    }
+
+
+
+
 }
