@@ -10,23 +10,35 @@ public class CharacterState : MonoBehaviour {
     public int hp;
     public int damage;
     public int range;
+    public int attackDelay;
+
+    public int objSizePer2;
+    public GameObject rayPoint;
 
     public bool isEnemy = false;
     public string targetTag;
+    public LayerMask targetMask;
     //private value
 
     public bool isMove = false;
     public Rigidbody2D rb;
     public Transform tr;
-
+    public float currentTime;
+    private Animator animator;
 
 
 
 
     private void Start()
     {
+        animator = this.gameObject.GetComponent<Animator>();
         tr = this.gameObject.GetComponent<Transform>();
         rb = this.gameObject.GetComponent<Rigidbody2D>();
+        objSizePer2 = Mathf.CeilToInt(this.gameObject.GetComponent<RectTransform>().sizeDelta.x/2);
+        Debug.Log(objSizePer2);
+
+
+
 
         if (!isEnemy)
         {
@@ -48,6 +60,15 @@ public class CharacterState : MonoBehaviour {
             Move();
         }
 
+
+        currentTime += Time.deltaTime;
+        if (currentTime > attackDelay)
+        {
+            currentTime = 0;
+            
+            animator.SetTrigger("Attacked");
+        }
+
     }
     
     private void Move()
@@ -58,14 +79,30 @@ public class CharacterState : MonoBehaviour {
 
     private void SerachEnemy()
     {
-        Vector2 origin = tr.position;
-        Ray2D ray = new Ray2D(tr.position, Vector3.left);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.left,range);
-        Debug.DrawRay(ray.origin, Vector2.left * range, Color.red);
+        Vector2 origin;
+        
+        if (!isEnemy)
+        {
+            //origin = tr.position + objSizePer2 * Vector3.left;
+            origin = rayPoint.transform.position;
 
-        if (hit.collider.tag == targetTag)
+        }
+        else
+        {
+            origin = tr.position + objSizePer2 * Vector3.right;
+        }
+        
+        Ray2D ray = new Ray2D(origin, Vector3.left);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.left, range, targetMask);
+        Debug.DrawRay(ray.origin, Vector2.left * range, Color.red);
+        
+        if (hit)
         {
             Debug.Log(hit.collider.name);
+
+        }
+        if (hit && hit.collider.tag == targetTag)
+        {
             isMove = false;
         }
         else
@@ -73,5 +110,7 @@ public class CharacterState : MonoBehaviour {
             isMove = true;
         }
     }
+
+
 
 }
