@@ -1,5 +1,6 @@
-13넥 - 13포토 - 14게잇 - 15가스 - 16파일런 - 17 사코
-- 18질럿 - 24스타게잇 - 25마당가스 - 28아둔 - 32커세어
--34로버 - 2포토 1파일런 - 34템플러아카이브
-
-깃 만들기 연습중 입니다.
+﻿git push origin master
+git pull origin master
+git remote origin master 주소
+git status
+git add .
+git commit -m ""
