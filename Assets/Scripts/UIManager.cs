@@ -8,23 +8,26 @@ public struct UIBoolSet
     public bool startAndOption;
     public bool stageSelect;
     public bool main;
+    public bool battleMap;
     public bool battleStage;
 }
 
 public class UIManager : MonoBehaviour {
 
-
+    static public UIManager instance;
+    
     public UIBoolSet UISet;
     
     public List<GameObject> UIList;
     public List<GameObject> Stage;
-
+    public int ativeStage = -1;
 
 	void Start () {
         UISet.startAndOption = true;
         UISet.stageSelect = false;
 
         UIList[0].SetActive(true);
+        instance = this.gameObject.GetComponent<UIManager>();
 	}
 	
 	
@@ -95,10 +98,15 @@ public class UIManager : MonoBehaviour {
     private void GetStage(int num)
     {
         Stage[num].SetActive(true);
-
+        ativeStage = num;
     }
 
-
+    public void EndStage()
+    {
+        Stage[ativeStage].SetActive(false);
+        ativeStage = -1;
+        Debug.Log("끝");
+    }
 
 
 }
