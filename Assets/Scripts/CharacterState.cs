@@ -13,6 +13,7 @@ public class CharacterState : MonoBehaviour {
     public int damage;
     public int range;
     public int attackDelay;
+    public int rewardMoney;
     public bool isDie = false;
 
     public int objSizePer2;
@@ -76,10 +77,11 @@ public class CharacterState : MonoBehaviour {
         if (isTower && UIManager.instance.ativeStage != -1)
         {
             towerText.text = hp + "/" + maxHp;
-            if (hp == 0)
+            if (hp <= 0)
             {
-                UIManager.instance.EndStage();
-                
+                hp = 0;
+                UIManager.instance.UIList[4].SetActive(true);
+                UIManager.instance.GetMoney(rewardMoney);
             }
         }
         
@@ -95,30 +97,36 @@ public class CharacterState : MonoBehaviour {
     private void SerachEnemy()
     {
         Vector2 origin;
-        
+        origin = rayPoint.transform.position;
         if (!isEnemy)
         {
             //origin = tr.position + objSizePer2 * Vector3.left;
-            origin = rayPoint.transform.position;
+            ray = new Ray2D(origin, Vector3.left);
 
         }
         else
         {
-            origin = tr.position + objSizePer2 * Vector3.right;
+            ray = new Ray2D(origin, Vector3.right);
         }
         
-        ray = new Ray2D(origin, Vector3.left);
+
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.left, range, targetMask);
-        Debug.DrawRay(ray.origin, Vector2.left * range, Color.red);
-       
-        if (hit && hit.collider.tag == targetTag)
+        Debug.DrawRay(ray.origin, ray.direction * range, Color.red);
+        if (isTower)
         {
             isMove = false;
-            Attacked();
         }
         else
         {
-            isMove = true;
+            if (hit && hit.collider.tag == targetTag)
+            {
+                isMove = false;
+                Attacked();
+            }
+            else
+            {
+                isMove = true;
+            }
         }
     }
 

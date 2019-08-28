@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct UIBoolSet
@@ -21,6 +22,8 @@ public class UIManager : MonoBehaviour {
     public List<GameObject> UIList;
     public List<GameObject> Stage;
     public int ativeStage = -1;
+
+    public Text rewardMoney;
 
 	void Start () {
         UISet.startAndOption = true;
@@ -101,11 +104,24 @@ public class UIManager : MonoBehaviour {
         ativeStage = num;
     }
 
+    public void GetMoney(int money)
+    {
+        rewardMoney.text = money.ToString();
+    }
+
+
     public void EndStage()
     {
         Stage[ativeStage].SetActive(false);
         ativeStage = -1;
         Debug.Log("끝");
+    }
+
+    public void OKButton()
+    {
+        EndStage();
+        UIList[3].SetActive(false);
+        UIList[4].SetActive(false);
     }
 
 
