@@ -15,8 +15,12 @@ public struct UIBoolSet
 
 public class UIManager : MonoBehaviour {
 
+
+
     static public UIManager instance;
-    
+
+    public List<GameObject> UIBtnControl;
+
     public UIBoolSet UISet;
     
     public List<GameObject> UIList;
@@ -24,13 +28,18 @@ public class UIManager : MonoBehaviour {
     public int ativeStage = -1;
 
     public Text rewardMoney;
+   
 
 	void Start () {
+        
+        instance = this.gameObject.GetComponent<UIManager>();
+
+        UIBtnControl.Add(UIList[0]);
+
         UISet.startAndOption = true;
         UISet.stageSelect = false;
 
         UIList[0].SetActive(true);
-        instance = this.gameObject.GetComponent<UIManager>();
 	}
 	
 	
@@ -45,20 +54,25 @@ public class UIManager : MonoBehaviour {
         switch (obj)
         {
             case "Start":
-                UISet.startAndOption = false;
-                UISet.stageSelect = true;
-
-                UIList[0].SetActive(false);
+                foreach (GameObject item in UIBtnControl)
+                {
+                    item.SetActive(false);
+                }
                 UIList[1].SetActive(true);
+                UIBtnControl.Add(UIList[1]);
+                
+
                 break;
             case "Option":
+
                 break;
             case "World":
-                UISet.stageSelect = false;
-                UISet.main = true;
-
-                UIList[1].SetActive(false);
+                foreach (GameObject item in UIBtnControl)
+                {
+                    item.SetActive(false);
+                }
                 UIList[2].SetActive(true);
+                UIBtnControl.Add(UIList[2]);
                 break;
             case "Future":
                 break;
@@ -67,16 +81,28 @@ public class UIManager : MonoBehaviour {
 
 
             case "BattleMenu":
-
-                UIList[2].SetActive(false);
+                foreach (GameObject item in UIBtnControl)
+                {
+                    item.SetActive(false);
+                }
                 UIList[3].SetActive(true);
+                UIBtnControl.Add(UIList[3]);
 
                 break;
             case "PowerUp":
                 break;
             case "CharacterForming":
+                foreach (GameObject item in UIBtnControl)
+                {
+                    item.SetActive(false);
+                }
+                UIList[5].SetActive(true);
+                UIBtnControl.Add(UIList[5]);
                 break;
             case "BackSapce":
+                UIBtnControl[UIBtnControl.Count - 1].SetActive(false);
+                UIBtnControl.RemoveAt(UIBtnControl.Count-1);
+                UIBtnControl[UIBtnControl.Count - 1].SetActive(true);
                 break;
             default:
                 break;
@@ -120,8 +146,10 @@ public class UIManager : MonoBehaviour {
     public void OKButton()
     {
         EndStage();
-        UIList[3].SetActive(false);
         UIList[4].SetActive(false);
+        UIBtnControl[UIBtnControl.Count - 1].SetActive(false);
+        UIBtnControl.RemoveAt(UIBtnControl.Count - 1);
+        UIBtnControl[UIBtnControl.Count - 1].SetActive(true);
     }
 
 
