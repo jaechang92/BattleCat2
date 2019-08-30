@@ -28,7 +28,9 @@ public class UIManager : MonoBehaviour {
     public int ativeStage = -1;
 
     public Text rewardMoney;
-   
+
+    public bool dragging = false;
+    public GameObject dragObj;
 
 	void Start () {
         
@@ -40,7 +42,8 @@ public class UIManager : MonoBehaviour {
         UISet.stageSelect = false;
 
         UIList[0].SetActive(true);
-	}
+        dragObj.SetActive(false);
+    }
 	
 	
 	void Update () {
@@ -152,5 +155,37 @@ public class UIManager : MonoBehaviour {
         UIBtnControl[UIBtnControl.Count - 1].SetActive(true);
     }
 
+    public void StartDragCharacterBtn()
+    {
+        dragging = true;
+        dragObj.SetActive(true);
+
+
+    }
+
+    public void EndDragCharacterBtn()
+    {
+        dragging = false;
+        dragObj.SetActive(false);
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (222 + (i*120) <= dragObj.transform.position.x && dragObj.transform.position.x <= 322 + (i * 120) &&
+                421 <= dragObj.transform.position.y && dragObj.transform.position.y <= 521)
+            {
+                Debug.Log("Get" + i);
+            }
+
+        }
+
+    }
+
+    public void DraggingCharacterBtn()
+    {
+
+            Vector3 position = Input.mousePosition;
+            dragObj.transform.position = position;
+            Debug.Log(dragObj.transform.position);
+    }
 
 }

@@ -63,7 +63,7 @@ public class UIScrollRectSnap : MonoBehaviour
                 minButtonNum = i;
             }
         }
-
+        
         if (!dragging)
         {
             LerpToBtn2(minButtonNum * -cBtnDistance);
