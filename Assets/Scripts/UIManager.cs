@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour {
     public bool dragging = false;
     public GameObject dragObj;
 
+    private CharacterState nowClickCState;
 	void Start () {
         
         instance = this.gameObject.GetComponent<UIManager>();
@@ -155,11 +156,11 @@ public class UIManager : MonoBehaviour {
         UIBtnControl[UIBtnControl.Count - 1].SetActive(true);
     }
 
-    public void StartDragCharacterBtn()
+    public void StartDragCharacterBtn(int i)
     {
         dragging = true;
         dragObj.SetActive(true);
-
+        nowClickCState = this.GetComponent<UIScrollRectSnap>().characterBtn[i].GetComponent<CharacterState>();
 
     }
 
@@ -174,6 +175,7 @@ public class UIManager : MonoBehaviour {
                 421 <= dragObj.transform.position.y && dragObj.transform.position.y <= 521)
             {
                 Debug.Log("Get" + i);
+                GameManager.instance.characterSlot[i] = nowClickCState;
             }
 
         }

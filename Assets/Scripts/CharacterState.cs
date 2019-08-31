@@ -66,8 +66,10 @@ public class CharacterState : MonoBehaviour {
     private void Update()
     {
         currentTime += Time.deltaTime;
-
-        SerachEnemy();
+        if (!this.gameObject.CompareTag("Slot"))
+        {
+            SerachEnemy();
+        }
 
         if (isMove)
         {
