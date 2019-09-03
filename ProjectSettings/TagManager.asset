@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SnapObject
   - Enemy
+  - Slot
   layers:
   - Default
   - TransparentFX

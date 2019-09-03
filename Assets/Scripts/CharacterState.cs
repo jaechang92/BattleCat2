@@ -14,6 +14,7 @@ public class CharacterState : MonoBehaviour {
     public int range;
     public int attackDelay;
     public int rewardMoney;
+    public int cost;
     public bool isDie = false;
 
     public int objSizePer2;

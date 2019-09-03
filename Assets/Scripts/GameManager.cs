@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     static public GameManager instance;
-
+    public delegate void EventHandler();
+    static event DieHandler asd;
     private struct UserStatus
     {
         public int Magnification_UserMoneySpeed;
@@ -15,14 +17,15 @@ public class GameManager : MonoBehaviour {
     }
 
     public float money;
+    public Text moneyText;
     private UserStatus userStatus;
 
     public List<CharacterState> characterSlot;
+    public List<GameObject> slot;
+    public GameObject obPool;
 
 
-
-
-    private void initAll()
+    public void initAll()
     {
         money = 0;
         userStatus.UserCatstleHp = 5000;
@@ -41,6 +44,7 @@ public class GameManager : MonoBehaviour {
     private void Update()
     {
         CalculMoney();
+       
     }
 
     private void CalculMoney()
@@ -53,6 +57,8 @@ public class GameManager : MonoBehaviour {
         {
             money = userStatus.Magnification_UserMoneySize;
         }
+
+        moneyText.text = (int)money + "/" + userStatus.Magnification_UserMoneySize;
     }
 
 }

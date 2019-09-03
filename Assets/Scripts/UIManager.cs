@@ -33,9 +33,12 @@ public class UIManager : MonoBehaviour {
     public GameObject dragObj;
 
     private CharacterState nowClickCState;
+    
 	void Start () {
         
         instance = this.gameObject.GetComponent<UIManager>();
+
+        
 
         UIBtnControl.Add(UIList[0]);
 
@@ -48,7 +51,7 @@ public class UIManager : MonoBehaviour {
 	
 	
 	void Update () {
-        
+
 	}
 
 
@@ -116,6 +119,8 @@ public class UIManager : MonoBehaviour {
 
     public void StageClick(string name)
     {
+        GameManager.instance.obPool.GetComponent<CreateObject>().SetUpMonster(GameManager.instance.characterSlot);
+        GameManager.instance.initAll();
         switch (name)
         {
             case "Korea":
@@ -154,13 +159,20 @@ public class UIManager : MonoBehaviour {
         UIBtnControl[UIBtnControl.Count - 1].SetActive(false);
         UIBtnControl.RemoveAt(UIBtnControl.Count - 1);
         UIBtnControl[UIBtnControl.Count - 1].SetActive(true);
+
     }
 
+
+    Sprite nowSprite;
     public void StartDragCharacterBtn(int i)
     {
+
         dragging = true;
         dragObj.SetActive(true);
+        Debug.Log("??????????");
         nowClickCState = this.GetComponent<UIScrollRectSnap>().characterBtn[i].GetComponent<CharacterState>();
+        nowSprite = nowClickCState.gameObject.GetComponent<Image>().sprite;
+        dragObj.GetComponent<Image>().sprite = nowSprite;
 
     }
 
@@ -176,6 +188,8 @@ public class UIManager : MonoBehaviour {
             {
                 Debug.Log("Get" + i);
                 GameManager.instance.characterSlot[i] = nowClickCState;
+                GameManager.instance.slot[i].GetComponent<Image>().sprite = nowSprite;
+                 
             }
 
         }
@@ -185,9 +199,14 @@ public class UIManager : MonoBehaviour {
     public void DraggingCharacterBtn()
     {
 
-            Vector3 position = Input.mousePosition;
-            dragObj.transform.position = position;
-            Debug.Log(dragObj.transform.position);
+        Vector3 position = Input.mousePosition;
+        dragObj.transform.position = position;
+
+    }
+
+    private void SetDropImg()
+    {
+
     }
 
 }

@@ -11,16 +11,28 @@ public class UIScrollRectSnap : MonoBehaviour
     public List<Button> characterBtn;
     public RectTransform center;
     public RectTransform center2;
+    public List<Image> images;
+
 
     private float[] distance;
     private float[] cDistance;
-    private bool dragging = false;
+    public bool dragging = false;
     private int btnDistance;
     private int cBtnDistance;
     private int minButtonNum; // To hold the number of the button, with smallest distance to center
 
     void Start()
     {
+        for (int i = 0; i < characterBtn.Count; i++)
+        {
+            images.Add(characterBtn[i].GetComponent<Image>());
+        }
+
+        foreach (var item in images)
+        {
+            item.raycastTarget = false;
+        }
+
         int btnLenght = btn.Length;
         distance = new float[btnLenght];
 
@@ -34,7 +46,9 @@ public class UIScrollRectSnap : MonoBehaviour
 
     void Update()
     {
-        if (UIManager.instance.UIBtnControl[UIManager.instance.UIBtnControl.Count-1].name == "BattelStage")
+
+
+        if (UIManager.instance.UIBtnControl[UIManager.instance.UIBtnControl.Count - 1].name == "BattelStage")
         {
             StageBtn();
         }
@@ -61,6 +75,8 @@ public class UIScrollRectSnap : MonoBehaviour
             if (minDistance == cDistance[i])
             {
                 minButtonNum = i;
+                InitSnap();
+                images[i].raycastTarget = true;
             }
         }
         
@@ -103,6 +119,7 @@ public class UIScrollRectSnap : MonoBehaviour
     }
     void LerpToBtn2(int position)
     {
+
         float newX = Mathf.Lerp(panel2.anchoredPosition.x, position, Time.deltaTime * 10f);
 
         Vector2 newPosition = new Vector2(newX, panel2.anchoredPosition.y);
@@ -112,12 +129,24 @@ public class UIScrollRectSnap : MonoBehaviour
 
     public void StartDrag()
     {
+
         dragging = true;
     }
 
     public void EndDrag()
     {
         dragging = false;
+    }
+
+
+
+    public void InitSnap()
+    {
+        foreach (var item in images)
+        {
+            item.raycastTarget = false;
+        }
+
     }
 
 }

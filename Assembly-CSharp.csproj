@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\CreateObject.cs" />
      <Compile Include="Assets\Scripts\Database.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\SanpControll.cs" />
      <Compile Include="Assets\Scripts\SlotImage.cs" />
      <Compile Include="Assets\Scripts\UIManager.cs" />
      <Compile Include="Assets\Scripts\UIScrollControll.cs" />
