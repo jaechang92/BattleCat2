@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8510,6 +8510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1538035414}
   - component: {fileID: 1538035415}
+  - component: {fileID: 1538035416}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -8556,6 +8557,107 @@ MonoBehaviour:
   - {fileID: 436956460}
   - {fileID: 837809368}
   obPool: {fileID: 1782301061}
+--- !u!114 &1538035416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1538035413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e4deb71b9832246b7cd37b47a0ca55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMonsterList:
+  - monsterID: 1
+    monsterName: "\uACE0\uC591\uC774"
+    monsterDescription: "\uC800\uAC00\uC0DD\uC0B0 \uAC00\uB2A5\uD55C \uAE30\uBCF8
+      \uCE90\uB9AD\uD130"
+    monsterIcon: {fileID: 0}
+    monsterPrefab: {fileID: 0}
+    lv: 1
+    exp: 200
+    hp: 0
+    attack: 0
+    defense: 0
+    speed: 0
+    critical: 0
+    maxExp: 0
+    cost: 0
+  - monsterID: 2
+    monsterName: "\uACE0\uC591\uC774 \uBCBD"
+    monsterDescription: "\uADF8\uC57C\uB9D0\uB85C \uC644\uBCBD\uD55C \uBCBD\uC744
+      \uC704\uD55C \uBC29\uC5B4\uC804\uC6A9 \uCE90\uB9AD\uD130"
+    monsterIcon: {fileID: 0}
+    monsterPrefab: {fileID: 0}
+    lv: 1
+    exp: 200
+    hp: 0
+    attack: 0
+    defense: 0
+    speed: 0
+    critical: 0
+    maxExp: 0
+    cost: 0
+  - monsterID: 3
+    monsterName: "\uBC30\uD2C0 \uACE0\uC591\uC774"
+    monsterDescription: "\uC804\uD22C\uC6A9 \uCE90\uB9AD\uD130"
+    monsterIcon: {fileID: 0}
+    monsterPrefab: {fileID: 0}
+    lv: 0
+    exp: 0
+    hp: 0
+    attack: 0
+    defense: 0
+    speed: 0
+    critical: 0
+    maxExp: 0
+    cost: 0
+  - monsterID: 4
+    monsterName: "\uAC01\uC120\uBBF8 \uACE0\uC591\uC774"
+    monsterDescription: "\uB9E4\uB048\uD55C \uB2E4\uB9AC\uAC00 \uC790\uB791\uC778
+      \uC6D0\uAC70\uB9AC\uD615 \uCE90\uB9AD"
+    monsterIcon: {fileID: 0}
+    monsterPrefab: {fileID: 0}
+    lv: 0
+    exp: 0
+    hp: 0
+    attack: 0
+    defense: 0
+    speed: 0
+    critical: 0
+    maxExp: 0
+    cost: 0
+  - monsterID: 5
+    monsterName: "\uAE30\uB9B0 \uACE0\uC591\uC774"
+    monsterDescription: "\uBBFC\uCCA9\uD55C \uC6C0\uC9C1\uC784\uC73C\uB85C \uC774\uB3D9\uB825\uC774
+      \uB6F0\uC5B4\uB09C \uCE90\uB9AD\uD130"
+    monsterIcon: {fileID: 0}
+    monsterPrefab: {fileID: 0}
+    lv: 0
+    exp: 0
+    hp: 0
+    attack: 0
+    defense: 0
+    speed: 0
+    critical: 0
+    maxExp: 0
+    cost: 0
+  - monsterID: 6
+    monsterName: "\uACE0\uC591\uC774 \uB4DC\uB798\uACE4"
+    monsterDescription: "\uD310\uD0C0\uC9C0 \uC138\uACC4\uC5D0\uC11C \uAC15\uB9BC\uD55C
+      \uC6D0\uAC70\uB9AC\uD615 \uCE90\uB9AD"
+    monsterIcon: {fileID: 0}
+    monsterPrefab: {fileID: 0}
+    lv: 0
+    exp: 0
+    hp: 0
+    attack: 0
+    defense: 0
+    speed: 0
+    critical: 0
+    maxExp: 0
+    cost: 0
 --- !u!1 &1542990425
 GameObject:
   m_ObjectHideFlags: 0
@@ -10198,6 +10300,7 @@ MonoBehaviour:
   - {fileID: 715050842}
   - {fileID: 979332422}
   createPoint: {fileID: 120707431}
+  createMonster: []
 --- !u!1 &1787946590
 GameObject:
   m_ObjectHideFlags: 0

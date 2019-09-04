@@ -38,6 +38,17 @@ public class CharacterState : MonoBehaviour {
     public Text towerText;
     private int maxHp;
 
+    public void StartBattle()
+    {
+        initState();
+    }
+
+    private void initState()
+    {
+        hp = maxHp;
+    }
+
+
     private void Start()
     {
         animator = this.gameObject.GetComponentInChildren<Animator>();
@@ -61,6 +72,11 @@ public class CharacterState : MonoBehaviour {
         {
             targetTag = "Player";
         }
+
+
+        UIManager.StartGameEvnet += StartBattle;
+
+        
     }
 
 
@@ -87,8 +103,6 @@ public class CharacterState : MonoBehaviour {
                 UIManager.instance.GetMoney(rewardMoney);
             }
         }
-        
-
     }
     
     private void Move()
@@ -177,4 +191,5 @@ public class CharacterState : MonoBehaviour {
     {
         Destroy(this.gameObject);
     }
+
 }

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     static public GameManager instance;
-    public delegate void EventHandler();
-    static event DieHandler asd;
+    
+    
     private struct UserStatus
     {
         public int Magnification_UserMoneySpeed;
@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
 
     public void initAll()
     {
+        
         money = 0;
         userStatus.UserCatstleHp = 5000;
         userStatus.Magnification_UserMoneySpeed = 200;
@@ -61,4 +62,5 @@ public class GameManager : MonoBehaviour {
         moneyText.text = (int)money + "/" + userStatus.Magnification_UserMoneySize;
     }
 
+    
 }

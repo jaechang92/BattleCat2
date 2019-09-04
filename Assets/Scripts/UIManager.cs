@@ -19,6 +19,11 @@ public class UIManager : MonoBehaviour {
 
     static public UIManager instance;
 
+    public delegate void EventHandler();
+    public static event EventHandler EndGameEvent;
+
+    public static event EventHandler StartGameEvnet;
+
     public List<GameObject> UIBtnControl;
 
     public UIBoolSet UISet;
@@ -121,6 +126,7 @@ public class UIManager : MonoBehaviour {
     {
         GameManager.instance.obPool.GetComponent<CreateObject>().SetUpMonster(GameManager.instance.characterSlot);
         GameManager.instance.initAll();
+        StartGameEvnet();
         switch (name)
         {
             case "Korea":
@@ -159,6 +165,7 @@ public class UIManager : MonoBehaviour {
         UIBtnControl[UIBtnControl.Count - 1].SetActive(false);
         UIBtnControl.RemoveAt(UIBtnControl.Count - 1);
         UIBtnControl[UIBtnControl.Count - 1].SetActive(true);
+        EndGameEvent();
 
     }
 

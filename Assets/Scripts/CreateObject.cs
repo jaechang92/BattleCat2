@@ -7,6 +7,14 @@ public class CreateObject : MonoBehaviour {
     public List<GameObject> monster;
     public RectTransform createPoint;
 
+    public List<GameObject> createMonster;
+
+    private void Start()
+    {
+        UIManager.EndGameEvent += EndGame;
+    }
+
+
     public void SetUpMonster(List<CharacterState> States)
     {
         for (int i = 0; i < 5; i++)
@@ -28,7 +36,17 @@ public class CreateObject : MonoBehaviour {
             CharacterState characterState = obj.GetComponent<CharacterState>();
             characterState = GameManager.instance.characterSlot[num];
             GameManager.instance.money -= GameManager.instance.characterSlot[num].cost;
+            createMonster.Add(obj);
         }
-
     }
+
+    public void EndGame()
+    {
+        foreach (var item in createMonster)
+        {
+            Destroy(item);
+        }
+        createMonster.Clear();
+    }
+
 }
