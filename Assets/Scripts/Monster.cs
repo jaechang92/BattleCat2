@@ -18,14 +18,16 @@ public class Monster
     public int exp;
     public int hp;
     public int attack;
+    public int range;
     public int defense;
     public int speed;
+    public int attackDelay;
     public int critical;
     public int maxExp;
     public int cost;
 
 
-    public Monster(int _monsterID, string _monsterName, string _monsterDes, int _lv, int _exp, int _hp, int _attack, int _defense, int _speed, int _critical , int _cost)
+    public Monster(int _monsterID, string _monsterName, string _monsterDes, int _lv, int _exp, int _hp, int _attack, int _defense, int _speed, int _critical ,int _range, int _attackDelay, int _cost)
     {
         monsterName = _monsterName;
         monsterDescription = _monsterDes;
@@ -37,6 +39,8 @@ public class Monster
         defense = _defense;
         speed = _speed;
         critical = _critical;
+        attackDelay = _attackDelay;
+        range = _range;
         cost = _cost;
         maxExp = _lv * 1000;
 
@@ -47,7 +51,7 @@ public class Monster
 
     public Monster MonsterDeepCopy()
     {
-        Monster newCopy = new Monster(monsterID, monsterName, monsterDescription, lv, exp, hp, attack, defense, speed, critical, cost);
+        Monster newCopy = new Monster(monsterID, monsterName, monsterDescription, lv, exp, hp, attack, defense, speed, critical, attackDelay, range, cost);
 
         newCopy.monsterID = this.monsterID;
         newCopy.monsterName = this.monsterName;
@@ -58,7 +62,9 @@ public class Monster
         newCopy.attack = this.attack;
         newCopy.defense = this.defense;
         newCopy.speed = this.speed;
+        newCopy.attackDelay = this.attackDelay;
         newCopy.critical = this.critical;
+        newCopy.range = this.range;
         newCopy.cost = this.cost;
         newCopy.maxExp = this.maxExp;
         return newCopy;

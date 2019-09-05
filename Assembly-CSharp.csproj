@@ -63,7 +63,6 @@
      <Compile Include="Assets\Scripts\UIManager.cs" />
      <Compile Include="Assets\Scripts\UIScrollControll.cs" />
      <Compile Include="Assets\Scripts\UIScrollRectSnap.cs" />
-     <Compile Include="Assets\Scripts\UISnapObject.cs" />
      <Compile Include="Assets\Scripts\UserInfo.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/kim/Desktop/Battle Cats/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

@@ -29,13 +29,13 @@ public class CreateObject : MonoBehaviour {
 
     public void CreateMonster(int num)
     {
-        if (GameManager.instance.characterSlot[num].cost < GameManager.instance.money)
+        int _cost = monster[num].GetComponent<CharacterState>().cost;
+        if (_cost < GameManager.instance.money)
         {
             GameObject obj = Instantiate(monster[num], this.gameObject.transform);
             obj.GetComponent<RectTransform>().anchoredPosition = createPoint.anchoredPosition;
-            CharacterState characterState = obj.GetComponent<CharacterState>();
-            characterState = GameManager.instance.characterSlot[num];
-            GameManager.instance.money -= GameManager.instance.characterSlot[num].cost;
+            
+            GameManager.instance.money -= _cost;
             createMonster.Add(obj);
         }
     }

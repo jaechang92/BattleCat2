@@ -192,4 +192,15 @@ public class CharacterState : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
+    public void UpDateState(Monster monster)
+    {
+        moveSpeed = monster.speed;
+        hp = monster.hp;
+        damage = monster.attack;
+        range = monster.range;
+        attackDelay = monster.attackDelay;
+        cost = monster.cost;
+
+    }
+
 }

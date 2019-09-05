@@ -124,9 +124,10 @@ public class UIManager : MonoBehaviour {
 
     public void StageClick(string name)
     {
-        GameManager.instance.obPool.GetComponent<CreateObject>().SetUpMonster(GameManager.instance.characterSlot);
+        //GameManager.instance.obPool.GetComponent<CreateObject>().SetUpMonster(GameManager.instance.characterSlot);
         GameManager.instance.initAll();
         StartGameEvnet();
+
         switch (name)
         {
             case "Korea":
@@ -171,15 +172,16 @@ public class UIManager : MonoBehaviour {
 
 
     Sprite nowSprite;
+    int startclick;
     public void StartDragCharacterBtn(int i)
     {
-
         dragging = true;
         dragObj.SetActive(true);
         Debug.Log("??????????");
-        nowClickCState = this.GetComponent<UIScrollRectSnap>().characterBtn[i].GetComponent<CharacterState>();
-        nowSprite = nowClickCState.gameObject.GetComponent<Image>().sprite;
+        
+        nowSprite = this.GetComponent<UIScrollRectSnap>().characterBtn[i].gameObject.GetComponent<Image>().sprite;
         dragObj.GetComponent<Image>().sprite = nowSprite;
+        startclick = i;
 
     }
 
@@ -194,9 +196,11 @@ public class UIManager : MonoBehaviour {
                 421 <= dragObj.transform.position.y && dragObj.transform.position.y <= 521)
             {
                 Debug.Log("Get" + i);
-                GameManager.instance.characterSlot[i] = nowClickCState;
+                //GameManager.instance.characterSlot[i] = nowClickCState;
                 GameManager.instance.slot[i].GetComponent<Image>().sprite = nowSprite;
-                 
+                GameManager.instance.obPool.GetComponent<CreateObject>().monster[i].GetComponent<CharacterState>().UpDateState(Database.instance.myMonsterList[startclick]);
+
+
             }
 
         }

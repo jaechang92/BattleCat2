@@ -20,8 +20,9 @@ public class GameManager : MonoBehaviour {
     public Text moneyText;
     private UserStatus userStatus;
 
-    public List<CharacterState> characterSlot;
+    public List<Image> characterSlot;
     public List<GameObject> slot;
+
     public GameObject obPool;
 
 
