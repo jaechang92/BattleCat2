@@ -101,8 +101,6 @@ public class UIManager : MonoBehaviour {
                 UIBtnControl.Add(UIList[3]);
 
                 break;
-            case "PowerUp":
-                break;
             case "CharacterForming":
                 foreach (GameObject item in UIBtnControl)
                 {
@@ -110,6 +108,14 @@ public class UIManager : MonoBehaviour {
                 }
                 UIList[5].SetActive(true);
                 UIBtnControl.Add(UIList[5]);
+                break;
+            case "PowerUp":
+                foreach (GameObject item in UIBtnControl)
+                {
+                    item.SetActive(false);
+                }
+                UIList[6].SetActive(true);
+                UIBtnControl.Add(UIList[6]);
                 break;
             case "BackSapce":
                 UIBtnControl[UIBtnControl.Count - 1].SetActive(false);

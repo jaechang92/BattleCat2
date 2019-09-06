@@ -37,6 +37,7 @@ public class CharacterState : MonoBehaviour {
     public RaycastHit2D[] hitAll;
     public Text towerText;
     private int maxHp;
+    
 
     public void StartBattle()
     {
@@ -45,6 +46,7 @@ public class CharacterState : MonoBehaviour {
 
     private void initState()
     {
+        isDie = false;
         hp = maxHp;
     }
 
@@ -93,7 +95,7 @@ public class CharacterState : MonoBehaviour {
             Move();
         }
 
-        if (isTower && UIManager.instance.ativeStage != -1)
+        if (isTower && UIManager.instance.ativeStage != -1 && isEnemy && !isDie)
         {
             towerText.text = hp + "/" + maxHp;
             if (hp <= 0)
@@ -101,6 +103,8 @@ public class CharacterState : MonoBehaviour {
                 hp = 0;
                 UIManager.instance.UIList[4].SetActive(true);
                 UIManager.instance.GetMoney(rewardMoney);
+                UserInfo.instance.GetXp(rewardMoney);
+                isDie = true;
             }
         }
     }
