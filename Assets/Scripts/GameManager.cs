@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     public UIScrollRectSnap _UI;
 
     public delegate void EventHandler();
-    public static event EventHandler ImageUpdataEvent;
+    
 
 
     private struct UserStatus
@@ -47,10 +47,11 @@ public class GameManager : MonoBehaviour {
             characterSlot.Add(Database.instance.myMonsterList[i]);
             
             _UI.images[i].sprite = Database.instance.myMonsterList[i].monsterIcon;
+            
 
         }
 
-        //ImageUpdataEvent();
+        
         Debug.Log("초기화");
     }
 

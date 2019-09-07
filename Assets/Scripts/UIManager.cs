@@ -21,8 +21,13 @@ public class UIManager : MonoBehaviour {
 
     public delegate void EventHandler();
     public static event EventHandler EndGameEvent;
-
+    
     public static event EventHandler StartGameEvnet;
+
+
+    //------------------------------------------------------
+
+    public GameObject UIImg;
 
     public List<GameObject> UIBtnControl;
 
@@ -38,19 +43,38 @@ public class UIManager : MonoBehaviour {
     public GameObject dragObj;
 
     private CharacterState nowClickCState;
-    
-	void Start () {
-        
-        instance = this.gameObject.GetComponent<UIManager>();
 
-        
-
+    private void InitScene()
+    {
         UIBtnControl.Add(UIList[0]);
+        foreach (GameObject item in UIBtnControl)
+        {
+            item.SetActive(false);
+        }
+
+        foreach (var item in UIList)
+        {
+            item.SetActive(false);
+        }
 
         UISet.startAndOption = true;
         UISet.stageSelect = false;
-
         UIList[0].SetActive(true);
+    }
+
+    
+	private void Start () {
+        
+        instance = this.gameObject.GetComponent<UIManager>();
+
+
+        InitScene();
+
+
+
+        
+
+        
         dragObj.SetActive(false);
     }
 	
@@ -116,6 +140,8 @@ public class UIManager : MonoBehaviour {
                 }
                 UIList[6].SetActive(true);
                 UIBtnControl.Add(UIList[6]);
+                UIImg.GetComponent<UIImage>().ImageGet();
+
                 break;
             case "BackSapce":
                 UIBtnControl[UIBtnControl.Count - 1].SetActive(false);
@@ -173,6 +199,7 @@ public class UIManager : MonoBehaviour {
         UIBtnControl.RemoveAt(UIBtnControl.Count - 1);
         UIBtnControl[UIBtnControl.Count - 1].SetActive(true);
         EndGameEvent();
+        
 
     }
 
