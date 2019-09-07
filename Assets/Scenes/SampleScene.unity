@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -742,16 +742,17 @@ MonoBehaviour:
   - {fileID: 1675065109}
   - {fileID: 1697026026}
   - {fileID: 1852735625}
-  characterBtn:
-  - {fileID: 730875529}
-  - {fileID: 165874777}
-  - {fileID: 671363747}
-  - {fileID: 1071831867}
-  - {fileID: 864168571}
-  - {fileID: 2079020460}
-  - {fileID: 1766836176}
   center: {fileID: 1738407544}
   center2: {fileID: 578147132}
+  charaterObj:
+  - {fileID: 730875524}
+  - {fileID: 165874772}
+  - {fileID: 671363742}
+  - {fileID: 1071831862}
+  - {fileID: 864168566}
+  - {fileID: 2079020455}
+  - {fileID: 1766836171}
+  characterBtn: []
   images: []
   dragging: 0
 --- !u!1 &141817570
@@ -4640,7 +4641,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7359,6 +7360,7 @@ GameObject:
   - component: {fileID: 1096497342}
   - component: {fileID: 1096497344}
   - component: {fileID: 1096497343}
+  - component: {fileID: 1096497345}
   m_Layer: 5
   m_Name: ScrollPanel
   m_TagString: Untagged
@@ -7425,6 +7427,18 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1096497341}
   m_CullTransparentMesh: 0
+--- !u!114 &1096497345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1096497341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274fad3e291fef54fa107cdf8e87ced8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  images: []
 --- !u!1 &1103552219
 GameObject:
   m_ObjectHideFlags: 0
@@ -8238,7 +8252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1301732033
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9195,16 +9209,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018d9876652ce7f4cb463cecf834b9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _UI: {fileID: 130089721}
   money: 0
   moneyText: {fileID: 148766353}
-  characterSlot:
-  - {fileID: 730875527}
-  - {fileID: 165874775}
-  - {fileID: 671363745}
-  - {fileID: 1071831865}
-  - {fileID: 864168569}
-  - {fileID: 2079020458}
-  - {fileID: 1766836174}
+  characterSize: 4
+  characterSlot: []
   slot:
   - {fileID: 1892455904}
   - {fileID: 562785807}
@@ -9228,7 +9237,7 @@ MonoBehaviour:
     monsterName: "\uACE0\uC591\uC774"
     monsterDescription: "\uC800\uAC00\uC0DD\uC0B0 \uAC00\uB2A5\uD55C \uAE30\uBCF8
       \uCE90\uB9AD\uD130"
-    monsterIcon: {fileID: 0}
+    monsterIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     monsterPrefab: {fileID: 0}
     lv: 1
     exp: 200
@@ -9245,7 +9254,7 @@ MonoBehaviour:
     monsterName: "\uACE0\uC591\uC774 \uBCBD"
     monsterDescription: "\uADF8\uC57C\uB9D0\uB85C \uC644\uBCBD\uD55C \uBCBD\uC744
       \uC704\uD55C \uBC29\uC5B4\uC804\uC6A9 \uCE90\uB9AD\uD130"
-    monsterIcon: {fileID: 0}
+    monsterIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     monsterPrefab: {fileID: 0}
     lv: 1
     exp: 200
@@ -9261,7 +9270,7 @@ MonoBehaviour:
   - monsterID: 3
     monsterName: "\uBC30\uD2C0 \uACE0\uC591\uC774"
     monsterDescription: "\uC804\uD22C\uC6A9 \uCE90\uB9AD\uD130"
-    monsterIcon: {fileID: 0}
+    monsterIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
     monsterPrefab: {fileID: 0}
     lv: 1
     exp: 200
@@ -9278,7 +9287,7 @@ MonoBehaviour:
     monsterName: "\uAC01\uC120\uBBF8 \uACE0\uC591\uC774"
     monsterDescription: "\uB9E4\uB048\uD55C \uB2E4\uB9AC\uAC00 \uC790\uB791\uC778
       \uC6D0\uAC70\uB9AC\uD615 \uCE90\uB9AD"
-    monsterIcon: {fileID: 0}
+    monsterIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     monsterPrefab: {fileID: 0}
     lv: 1
     exp: 400

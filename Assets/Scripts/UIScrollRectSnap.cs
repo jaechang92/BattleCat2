@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class UIScrollRectSnap : MonoBehaviour
 {
+
     public RectTransform panel;
     public RectTransform panel2;
     public Button[] btn;
-    public List<Button> characterBtn;
     public RectTransform center;
     public RectTransform center2;
+    public List<GameObject> charaterObj;
+    public List<Button> characterBtn;
     public List<Image> images;
 
 
@@ -23,10 +25,13 @@ public class UIScrollRectSnap : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < characterBtn.Count; i++)
+        foreach (var item in charaterObj)
         {
-            images.Add(characterBtn[i].GetComponent<Image>());
+            characterBtn.Add(item.GetComponent<Button>());
+            images.Add(item.GetComponent<Image>());
         }
+        
+
 
         foreach (var item in images)
         {

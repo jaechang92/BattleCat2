@@ -32,6 +32,17 @@ public class Database : MonoBehaviour {
         //StartCoroutine(Co_MyLoad());
     }
 
-
+    public Monster MyMonsterFindFunc(int monsterID)
+    {
+        foreach (Monster item in myMonsterList)
+        {
+            if (item.monsterID == monsterID)
+            {
+                return item;
+            }
+        }
+        Debug.LogError("찾는 몬스터 ID가 존재하지 않습니다.");
+        return null;
+    }
 
 }

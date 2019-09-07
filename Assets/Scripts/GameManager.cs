@@ -6,8 +6,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     static public GameManager instance;
-    
-    
+    public UIScrollRectSnap _UI;
+
+    public delegate void EventHandler();
+    public static event EventHandler ImageUpdataEvent;
+
+
     private struct UserStatus
     {
         public int Magnification_UserMoneySpeed;
@@ -20,7 +24,10 @@ public class GameManager : MonoBehaviour {
     public Text moneyText;
     private UserStatus userStatus;
 
-    public List<Image> characterSlot;
+    public int characterSize = 4;
+    public List<Monster> characterSlot;
+
+
     public List<GameObject> slot;
 
     public GameObject obPool;
@@ -34,13 +41,28 @@ public class GameManager : MonoBehaviour {
         userStatus.Magnification_UserMoneySpeed = 200;
         userStatus.Magnification_UserMoneySize = 2000;
         userStatus.Magnification_UserCreateSpeed = 1;
+
+        for (int i = 0; i < characterSize; i++)
+        {
+            characterSlot.Add(Database.instance.myMonsterList[i]);
+            
+            _UI.images[i].sprite = Database.instance.myMonsterList[i].monsterIcon;
+
+        }
+
+        //ImageUpdataEvent();
         Debug.Log("초기화");
     }
 
-    private void Start()
+    private void Awake()
     {
         instance = this;
+
+    }
+    private void Start()
+    {
         initAll();
+        
     }
 
     private void Update()
@@ -63,5 +85,13 @@ public class GameManager : MonoBehaviour {
         moneyText.text = (int)money + "/" + userStatus.Magnification_UserMoneySize;
     }
 
-    
+    public void GetMonster(int id)
+    {
+        Monster monster = Database.instance.MyMonsterFindFunc(id);
+        if (monster != null)
+        {
+            characterSize++;
+            characterSlot.Add(monster);
+        }
+    }
 }
