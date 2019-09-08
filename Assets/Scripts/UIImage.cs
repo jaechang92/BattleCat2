@@ -5,18 +5,16 @@ using UnityEngine.UI;
 
 public class UIImage : MonoBehaviour {
 
-    public List<Sprite> images;
+    public List<Image> images;
 
-    private void Start()
-    {
-        GameManager.ImageUpdataEvent += ImageUpdate;
-    }
     
-    public void ImageUpdate()
+    public void ImageGet()
     {
-        for (int i = 0; i < images.Count; i++)
+        Debug.Log("get Img");
+        for (int i = 0; i < GameManager.instance.characterSize; i++)
         {
-            images[i] = GameManager.instance.characterSlot[i].monsterIcon;
+            images[i].sprite = GameManager.instance.characterSlot[i].monsterIcon;
+                //.Add(GameManager.instance.characterSlot[i].monsterIcon);
         }
     }
 }
