@@ -1,6 +1,6 @@
 ﻿git push origin master
 git pull origin master
-git remote origin master 주소
+git remote add origin + repository address
 git status
 git add .
 git commit -m ""
@@ -14,3 +14,8 @@ git config core.autocrlf true
 [Linux,Max OS]
 git config core.autocrlf input
 -리눅스, 맥, 유닉스는 LF 만 사용하므로 input 으로 설정한다.
+
+[empty commit]
+git commit --allow-empty -m "내용"
+
+※ 락 에러 발생시 - git 폴더안의 Lock파일을 삭제
