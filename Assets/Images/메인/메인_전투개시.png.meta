@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 9357eeda104cc6742a346d4c4438a54b
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: "\uBA54\uC778_\uC804\uD22C\uAC1C\uC2DC_0"
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -40,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -93,11 +94,31 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: "\uBA54\uC778_\uC804\uD22C\uAC1C\uC2DC_0"
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2
+        width: 412
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a10faa93a6b1be4eb68e33c325ad5f0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6e684ade3b36edd4aa1d0f9dbb0284f1
     vertices: []
     indices: 
     edges: []
