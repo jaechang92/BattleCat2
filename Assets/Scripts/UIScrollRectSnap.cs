@@ -8,20 +8,20 @@ public class UIScrollRectSnap : MonoBehaviour
 
     public RectTransform panel;
     public RectTransform panel2;
-    public Button[] btn;
+    public GameObject[] btn;
     public RectTransform center;
     public RectTransform center2;
     public List<GameObject> charaterObj;
     public List<Button> characterBtn;
     public List<Image> images;
-
+    public Button battleStartBtn;
 
     private float[] distance;
     private float[] cDistance;
     public bool dragging = false;
     private int btnDistance;
     private int cBtnDistance;
-    private int minButtonNum; // To hold the number of the button, with smallest distance to center
+    public int minButtonNum; // To hold the number of the button, with smallest distance to center
 
     void Start()
     {
@@ -152,6 +152,11 @@ public class UIScrollRectSnap : MonoBehaviour
             item.raycastTarget = false;
         }
 
+    }
+
+    public void StartBattle()
+    {
+        UIManager.instance.StageClick(minButtonNum);
     }
 
 }

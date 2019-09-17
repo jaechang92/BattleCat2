@@ -44,6 +44,8 @@ public class UIManager : MonoBehaviour {
 
     private CharacterState nowClickCState;
 
+
+
     private void InitScene()
     {
         UIBtnControl.Add(UIList[0]);
@@ -154,15 +156,16 @@ public class UIManager : MonoBehaviour {
     }
 
 
-    public void StageClick(string name)
+    public void StageClick(int name)
     {
         //GameManager.instance.obPool.GetComponent<CreateObject>().SetUpMonster(GameManager.instance.characterSlot);
         GameManager.instance.initAll();
         StartGameEvnet();
 
+
         switch (name)
         {
-            case "Korea":
+            case 0:
                 GetStage(0);
                 Debug.Log("한국 스테이지");
                 break;
