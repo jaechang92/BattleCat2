@@ -89,70 +89,8 @@ public class UIManager : MonoBehaviour {
     public void ButtonClike(string obj)
     {
         Debug.Log("in");
-        switch (obj)
-        {
-            case "Start":
-                foreach (GameObject item in UIBtnControl)
-                {
-                    item.SetActive(false);
-                }
-                UIList[1].SetActive(true);
-                UIBtnControl.Add(UIList[1]);
-                
-
-                break;
-            case "Option":
-
-                break;
-            case "World":
-                foreach (GameObject item in UIBtnControl)
-                {
-                    item.SetActive(false);
-                }
-                UIList[2].SetActive(true);
-                UIBtnControl.Add(UIList[2]);
-                break;
-            case "Future":
-                break;
-            case "CatSchool":
-                break;
-
-
-            case "BattleMenu":
-                foreach (GameObject item in UIBtnControl)
-                {
-                    item.SetActive(false);
-                }
-                UIList[3].SetActive(true);
-                UIBtnControl.Add(UIList[3]);
-
-                break;
-            case "CharacterForming":
-                foreach (GameObject item in UIBtnControl)
-                {
-                    item.SetActive(false);
-                }
-                UIList[5].SetActive(true);
-                UIBtnControl.Add(UIList[5]);
-                break;
-            case "PowerUp":
-                foreach (GameObject item in UIBtnControl)
-                {
-                    item.SetActive(false);
-                }
-                UIList[6].SetActive(true);
-                UIBtnControl.Add(UIList[6]);
-                UIImg.GetComponent<UIImage>().ImageGet();
-
-                break;
-            case "BackSapce":
-                UIBtnControl[UIBtnControl.Count - 1].SetActive(false);
-                UIBtnControl.RemoveAt(UIBtnControl.Count-1);
-                UIBtnControl[UIBtnControl.Count - 1].SetActive(true);
-                break;
-            default:
-                break;
-        }
+        StartCoroutine(DelayFunc(obj));
+        
     }
 
 
@@ -251,6 +189,74 @@ public class UIManager : MonoBehaviour {
 
     }
 
+    IEnumerator DelayFunc(string obj)
+    {
+        Debug.Log("코오오오오오오루틴");
+        yield return new WaitForSeconds(2.0f);
+        switch (obj)
+        {
+            case "Start":
+                foreach (GameObject item in UIBtnControl)
+                {
+                    item.SetActive(false);
+                }
+                UIList[1].SetActive(true);
+                UIBtnControl.Add(UIList[1]);
 
+
+                break;
+            case "Option":
+
+                break;
+            case "World":
+                foreach (GameObject item in UIBtnControl)
+                {
+                    item.SetActive(false);
+                }
+                UIList[2].SetActive(true);
+                UIBtnControl.Add(UIList[2]);
+                break;
+            case "Future":
+                break;
+            case "CatSchool":
+                break;
+
+
+            case "BattleMenu":
+                foreach (GameObject item in UIBtnControl)
+                {
+                    item.SetActive(false);
+                }
+                UIList[3].SetActive(true);
+                UIBtnControl.Add(UIList[3]);
+
+                break;
+            case "CharacterForming":
+                foreach (GameObject item in UIBtnControl)
+                {
+                    item.SetActive(false);
+                }
+                UIList[5].SetActive(true);
+                UIBtnControl.Add(UIList[5]);
+                break;
+            case "PowerUp":
+                foreach (GameObject item in UIBtnControl)
+                {
+                    item.SetActive(false);
+                }
+                UIList[6].SetActive(true);
+                UIBtnControl.Add(UIList[6]);
+                UIImg.GetComponent<UIImage>().ImageGet();
+
+                break;
+            case "BackSapce":
+                UIBtnControl[UIBtnControl.Count - 1].SetActive(false);
+                UIBtnControl.RemoveAt(UIBtnControl.Count - 1);
+                UIBtnControl[UIBtnControl.Count - 1].SetActive(true);
+                break;
+            default:
+                break;
+        }
+    }
 
 }
