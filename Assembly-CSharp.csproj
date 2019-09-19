@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\Database.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Monster.cs" />
+     <Compile Include="Assets\Scripts\OutLineControll.cs" />
      <Compile Include="Assets\Scripts\SanpControll.cs" />
      <Compile Include="Assets\Scripts\SlotImage.cs" />
      <Compile Include="Assets\Scripts\UIImage.cs" />
