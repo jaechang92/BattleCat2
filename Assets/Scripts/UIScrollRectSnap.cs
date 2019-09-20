@@ -8,20 +8,28 @@ public class UIScrollRectSnap : MonoBehaviour
 
     public RectTransform panel;
     public RectTransform panel2;
+    public RectTransform panel3;
     public GameObject[] btn;
+    public GameObject[] stageMaskBtn;
+
     public RectTransform center;
     public RectTransform center2;
+    public RectTransform center3;
     public List<GameObject> charaterObj;
     public List<Button> characterBtn;
     public List<Image> images;
     public Button battleStartBtn;
 
     private float[] distance;
+    private float[] smDistance;
     private float[] cDistance;
     public bool dragging = false;
     private int btnDistance;
+    private int stageMaskDistance;
     private int cBtnDistance;
     public int minButtonNum; // To hold the number of the button, with smallest distance to center
+
+    private OutLineControll[] otcArray = new OutLineControll[3];
 
     void Start()
     {
@@ -31,20 +39,29 @@ public class UIScrollRectSnap : MonoBehaviour
             images.Add(item.GetComponent<Image>());
         }
         
-
-
+        
         foreach (var item in images)
         {
             item.raycastTarget = false;
         }
 
+        for (int i = 0; i < 3; i++)
+        {
+            otcArray[i] = stageMaskBtn[i].GetComponent<OutLineControll>();
+        }
+
+
         int btnLenght = btn.Length;
         distance = new float[btnLenght];
+
+        int btnLevelLenght = stageMaskBtn.Length;
+        smDistance = new float[btnLevelLenght];
 
         int cBtnLenght = characterBtn.Count;
         cDistance = new float[cBtnLenght];
 
         btnDistance = (int)Mathf.Abs(btn[1].GetComponent<RectTransform>().anchoredPosition.x - btn[0].GetComponent<RectTransform>().anchoredPosition.x);
+        stageMaskDistance = (int)Mathf.Abs(stageMaskBtn[1].GetComponent<RectTransform>().anchoredPosition.x - stageMaskBtn[0].GetComponent<RectTransform>().anchoredPosition.x);
         cBtnDistance = (int)Mathf.Abs(characterBtn[1].GetComponent<RectTransform>().anchoredPosition.x - characterBtn[0].GetComponent<RectTransform>().anchoredPosition.x);
     }
 
@@ -56,6 +73,11 @@ public class UIScrollRectSnap : MonoBehaviour
         if (UIManager.instance.UIBtnControl[UIManager.instance.UIBtnControl.Count - 1].name == "BattelStage")
         {
             StageBtn();
+        }
+
+        if (UIManager.instance.UIBtnControl[UIManager.instance.UIBtnControl.Count - 1].name == "StageMask")
+        {
+            StageMaskBtn();
         }
 
         if (UIManager.instance.UIBtnControl[UIManager.instance.UIBtnControl.Count - 1].name == "CharacterFormingUI")
@@ -87,8 +109,40 @@ public class UIScrollRectSnap : MonoBehaviour
         
         if (!dragging)
         {
-            LerpToBtn2(minButtonNum * -cBtnDistance);
+            LerpToBtn(panel2,minButtonNum * -cBtnDistance);
         }
+    }
+
+    public void StageMaskBtn()
+    {
+        for (int i = 0; i < stageMaskBtn.Length; i++)
+        {
+            smDistance[i] = Mathf.Abs(center3.transform.position.x - stageMaskBtn[i].transform.position.x);
+        }
+        float minDistance = Mathf.Min(smDistance); // Get the min distance
+        
+        for (int i = 0; i < stageMaskBtn.Length; i++)
+        {
+            if (minDistance == smDistance[i])
+            {
+                minButtonNum = i;
+
+                foreach (var item in otcArray)
+                {
+                    item.selectThis = false;
+                }
+                otcArray[minButtonNum].selectThis = true;
+            }
+        }
+
+        
+        if (!dragging)
+        {
+            LerpToBtn(panel3, minButtonNum * -stageMaskDistance);
+        }
+        
+        
+
     }
 
     public void StageBtn()
@@ -110,27 +164,19 @@ public class UIScrollRectSnap : MonoBehaviour
 
         if (!dragging)
         {
-            LerpToBtn(minButtonNum * -btnDistance);
+            LerpToBtn(panel,minButtonNum * -btnDistance);
         }
     }
 
-    void LerpToBtn(int position)
+    void LerpToBtn(RectTransform _panel, int position)
     {
-        float newX = Mathf.Lerp(panel.anchoredPosition.x, position, Time.deltaTime * 10f);
+        float newX = Mathf.Lerp(_panel.anchoredPosition.x, position, Time.deltaTime * 10f);
 
-        Vector2 newPosition = new Vector2(newX, panel.anchoredPosition.y);
+        Vector2 newPosition = new Vector2(newX, _panel.anchoredPosition.y);
 
-        panel.anchoredPosition = newPosition;
+        _panel.anchoredPosition = newPosition;
     }
-    void LerpToBtn2(int position)
-    {
-
-        float newX = Mathf.Lerp(panel2.anchoredPosition.x, position, Time.deltaTime * 10f);
-
-        Vector2 newPosition = new Vector2(newX, panel2.anchoredPosition.y);
-
-        panel2.anchoredPosition = newPosition;
-    }
+    
 
     public void StartDrag()
     {

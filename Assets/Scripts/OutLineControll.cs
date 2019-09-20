@@ -15,11 +15,13 @@ public class OutLineControll : MonoBehaviour {
 
     public float changeTime = 0.2f;
     private float currentTime = 0.0f;
+    private Color nullColor = new Color(0,0,0,0);
     public Color pink;
 
     private void Start()
     {
         Outline = this.gameObject.GetComponent<Outline>();
+        Outline.effectColor = nullColor;
 
     }
      
@@ -40,6 +42,10 @@ public class OutLineControll : MonoBehaviour {
                 Outline.effectColor = pink;
             }
             currentTime += Time.deltaTime;
+        }
+        else
+        {
+            Outline.effectColor = nullColor;
         }
     }
 
