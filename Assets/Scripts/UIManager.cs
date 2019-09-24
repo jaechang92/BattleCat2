@@ -59,6 +59,12 @@ public class UIManager : MonoBehaviour {
             item.SetActive(false);
         }
 
+        foreach (var item in Stage)
+        {
+            item.SetActive(false);
+        }
+
+
         UISet.startAndOption = true;
         UISet.stageSelect = false;
         UIList[0].SetActive(true);
@@ -191,8 +197,8 @@ public class UIManager : MonoBehaviour {
 
     IEnumerator DelayFunc(string obj)
     {
-        Debug.Log("코오오오오오오루틴");
-        yield return new WaitForSeconds(2.0f);
+        Debug.Log("버튼 딜레이 코루틴");
+        yield return new WaitForSeconds(0.5f);
         switch (obj)
         {
             case "Start":
