@@ -63,7 +63,14 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         initAll();
-        
+
+        for (int i = 0; i < 5; i++)
+        {
+            slot[i].GetComponent<Image>().sprite = characterSlot[i].monsterIcon;
+            Debug.Log(characterSlot[i].monsterIcon.name);
+        }
+
+
     }
 
     private void Update()

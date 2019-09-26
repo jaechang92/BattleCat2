@@ -31,6 +31,7 @@ public class UIScrollRectSnap : MonoBehaviour
 
     private OutLineControll[] otcArray = new OutLineControll[3];
 
+    private CreateObject obPool;
     void Start()
     {
         foreach (var item in charaterObj)
@@ -63,6 +64,9 @@ public class UIScrollRectSnap : MonoBehaviour
         btnDistance = (int)Mathf.Abs(btn[1].GetComponent<RectTransform>().anchoredPosition.x - btn[0].GetComponent<RectTransform>().anchoredPosition.x);
         stageMaskDistance = (int)Mathf.Abs(stageMaskBtn[1].GetComponent<RectTransform>().anchoredPosition.x - stageMaskBtn[0].GetComponent<RectTransform>().anchoredPosition.x);
         cBtnDistance = (int)Mathf.Abs(characterBtn[1].GetComponent<RectTransform>().anchoredPosition.x - characterBtn[0].GetComponent<RectTransform>().anchoredPosition.x);
+
+        obPool = GameManager.instance.obPool.GetComponent<CreateObject>();
+
     }
 
 
@@ -203,6 +207,18 @@ public class UIScrollRectSnap : MonoBehaviour
     public void StartBattle()
     {
         UIManager.instance.StageClick(minButtonNum);
+        InitObjectPool();
     }
+
+    private void InitObjectPool()
+    {
+        for (int i = 0; i < obPool.monster.Count; i++)
+        {
+            obPool.monster[i].GetComponent<CharacterState>().UpDateState(GameManager.instance.characterSlot[i]);
+        }
+
+
+    }
+    
 
 }

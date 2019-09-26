@@ -233,6 +233,7 @@ public class UIManager : MonoBehaviour {
                 {
                     item.SetActive(false);
                 }
+                UIList[2].SetActive(true);
                 UIList[3].SetActive(true);
                 UIBtnControl.Add(UIList[3]);
 
@@ -242,6 +243,7 @@ public class UIManager : MonoBehaviour {
                 {
                     item.SetActive(false);
                 }
+                UIList[2].SetActive(true);
                 UIList[5].SetActive(true);
                 UIBtnControl.Add(UIList[5]);
                 break;
