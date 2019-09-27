@@ -56,7 +56,7 @@ public class CharacterState : MonoBehaviour {
         animator = this.gameObject.GetComponentInChildren<Animator>();
         tr = this.gameObject.GetComponent<Transform>();
         rb = this.gameObject.GetComponent<Rigidbody2D>();
-        objSizePer2 = Mathf.CeilToInt(this.gameObject.GetComponent<RectTransform>().sizeDelta.x/2);
+        //objSizePer2 = Mathf.CeilToInt(this.gameObject.GetComponent<RectTransform>().sizeDelta.x/2);
         maxHp = hp;
 
         if (isTower)
@@ -142,11 +142,13 @@ public class CharacterState : MonoBehaviour {
             if (hit && hit.collider.tag == targetTag)
             {
                 isMove = false;
+                animator.SetBool("IsWalk", false);
                 Attacked();
             }
             else
             {
                 isMove = true;
+                animator.SetBool("IsWalk", true);
             }
         }
     }

@@ -106,11 +106,12 @@ public class UIManager : MonoBehaviour {
         GameManager.instance.initAll();
         StartGameEvnet();
 
-
+        UIList[2].SetActive(false);
         switch (name)
         {
             case 0:
                 GetStage(0);
+
                 Debug.Log("한국 스테이지");
                 break;
 
@@ -146,7 +147,8 @@ public class UIManager : MonoBehaviour {
         UIBtnControl.RemoveAt(UIBtnControl.Count - 1);
         UIBtnControl[UIBtnControl.Count - 1].SetActive(true);
         EndGameEvent();
-        
+        UIList[2].SetActive(true);
+
 
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreateObject : MonoBehaviour {
 
     public List<GameObject> monster;
-    public RectTransform createPoint;
+    public Transform createPoint;
 
     public List<GameObject> createMonster;
 
@@ -29,14 +29,19 @@ public class CreateObject : MonoBehaviour {
 
     public void CreateMonster(int num)
     {
+        float rand = Random.Range(0, 0.3f);
+        Vector3 rVector = new Vector2(0, rand);
         int _cost = monster[num].GetComponent<CharacterState>().cost;
         if (_cost < GameManager.instance.money)
         {
             GameObject obj = Instantiate(monster[num], this.gameObject.transform);
-            obj.GetComponent<RectTransform>().anchoredPosition = createPoint.anchoredPosition;
+            obj.GetComponent<Transform>().position = createPoint.position + rVector;
             
             GameManager.instance.money -= _cost;
             createMonster.Add(obj);
+
+            obj.GetComponentInChildren<SpriteRenderer>().sortingOrder = (int)(rand * -10000);
+
         }
     }
 
