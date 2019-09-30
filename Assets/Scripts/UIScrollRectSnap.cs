@@ -32,6 +32,8 @@ public class UIScrollRectSnap : MonoBehaviour
     private OutLineControll[] otcArray = new OutLineControll[3];
 
     private CreateObject obPool;
+
+    public List<Image> slotImage; // 인게임슬롯이미지
     void Start()
     {
         foreach (var item in charaterObj)
@@ -215,6 +217,7 @@ public class UIScrollRectSnap : MonoBehaviour
         for (int i = 0; i < obPool.monster.Count; i++)
         {
             obPool.monster[i].GetComponent<CharacterState>().UpDateState(GameManager.instance.characterSlot[i]);
+            slotImage[i].GetComponent<Image>().sprite = GameManager.instance.characterSlot[i].monsterIcon;
         }
 
 
