@@ -15,6 +15,7 @@ public class CharacterState : MonoBehaviour {
     public int attackDelay;
     public int rewardMoney;
     public int cost;
+    public int createTime;
     public bool isDie = false;
 
     public int objSizePer2;
@@ -48,6 +49,7 @@ public class CharacterState : MonoBehaviour {
     {
         isDie = false;
         hp = maxHp;
+        
     }
 
 
@@ -206,6 +208,7 @@ public class CharacterState : MonoBehaviour {
         range = monster.range;
         attackDelay = monster.attackDelay;
         cost = monster.cost;
+        createTime = monster.createTime;
 
     }
 

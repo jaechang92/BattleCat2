@@ -219,9 +219,9 @@ public class UIScrollRectSnap : MonoBehaviour
             obPool.monster[i].GetComponent<CharacterState>().UpDateState(GameManager.instance.characterSlot[i]);
             slotImage[i].GetComponent<Image>().sprite = GameManager.instance.characterSlot[i].monsterIcon;
         }
-
-
     }
+
+    
     
 
 }

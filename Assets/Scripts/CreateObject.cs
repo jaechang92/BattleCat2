@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateObject : MonoBehaviour {
 
@@ -8,7 +9,12 @@ public class CreateObject : MonoBehaviour {
     public Transform createPoint;
 
     public List<GameObject> createMonster;
+    public List<Image> slotImage; // 인게임슬롯이미지
+    public List<Image> gage;
 
+
+    private Color waitColor = Color.gray;
+    private Color originColor = Color.white;
     private void Start()
     {
         UIManager.EndGameEvent += EndGame;
@@ -32,7 +38,7 @@ public class CreateObject : MonoBehaviour {
         float rand = Random.Range(0, 0.3f);
         Vector3 rVector = new Vector2(0, rand);
         int _cost = monster[num].GetComponent<CharacterState>().cost;
-        if (_cost < GameManager.instance.money)
+        if (_cost < GameManager.instance.money && slotImage[num].GetComponent<Image>().color != waitColor)
         {
             GameObject obj = Instantiate(monster[num], this.gameObject.transform);
             obj.GetComponent<Transform>().position = createPoint.position + rVector;
@@ -42,7 +48,12 @@ public class CreateObject : MonoBehaviour {
 
             obj.GetComponentInChildren<SpriteRenderer>().sortingOrder = (int)(rand * -10000);
 
+            slotImage[num].GetComponent<Image>().color = waitColor;
+            StartCoroutine(CreateActive(num));
+            gage[num].gameObject.SetActive(true);
+            gage[num].GetComponent<FilledAmount>().getTime(monster[num].GetComponent<CharacterState>().createTime);
         }
+
     }
 
     public void EndGame()
@@ -52,6 +63,14 @@ public class CreateObject : MonoBehaviour {
             Destroy(item);
         }
         createMonster.Clear();
+    }
+
+    IEnumerator CreateActive(int num)
+    {
+        int waitTime = monster[num].GetComponent<CharacterState>().createTime;
+        yield return new WaitForSeconds(waitTime);
+        Debug.Log("코루틴");
+        slotImage[num].GetComponent<Image>().color = originColor;
     }
 
 }

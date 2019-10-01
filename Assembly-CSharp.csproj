@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\ChildControll.cs" />
      <Compile Include="Assets\Scripts\CreateObject.cs" />
      <Compile Include="Assets\Scripts\Database.cs" />
+     <Compile Include="Assets\Scripts\FilledAmount.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Monster.cs" />
      <Compile Include="Assets\Scripts\OutLineControll.cs" />
