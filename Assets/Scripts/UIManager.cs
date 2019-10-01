@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour {
     public int ativeStage = -1;
 
     public Text rewardMoney;
-
+    public Text stageName;
     public bool dragging = false;
     public GameObject dragObj;
 
@@ -223,6 +223,7 @@ public class UIManager : MonoBehaviour {
                 }
                 UIList[2].SetActive(true);
                 UIBtnControl.Add(UIList[2]);
+                stageName.text = "고양이 기지";
                 break;
             case "Future":
                 break;
@@ -238,7 +239,7 @@ public class UIManager : MonoBehaviour {
                 UIList[2].SetActive(true);
                 UIList[3].SetActive(true);
                 UIBtnControl.Add(UIList[3]);
-
+                stageName.text = "스테이지 선택";
                 break;
             case "CharacterForming":
                 foreach (GameObject item in UIBtnControl)
@@ -248,21 +249,27 @@ public class UIManager : MonoBehaviour {
                 UIList[2].SetActive(true);
                 UIList[5].SetActive(true);
                 UIBtnControl.Add(UIList[5]);
+                stageName.text = "캐릭터 편성";
                 break;
             case "PowerUp":
                 foreach (GameObject item in UIBtnControl)
                 {
                     item.SetActive(false);
                 }
+                UIList[2].SetActive(true);
                 UIList[6].SetActive(true);
                 UIBtnControl.Add(UIList[6]);
                 UIImg.GetComponent<UIImage>().ImageGet();
-
+                stageName.text = "파워 업";
                 break;
             case "BackSapce":
                 UIBtnControl[UIBtnControl.Count - 1].SetActive(false);
                 UIBtnControl.RemoveAt(UIBtnControl.Count - 1);
                 UIBtnControl[UIBtnControl.Count - 1].SetActive(true);
+                if(UIBtnControl[UIBtnControl.Count - 1].name == "Main")
+                {
+                    stageName.text = "고양이 기지";
+                }
                 break;
             default:
                 break;
