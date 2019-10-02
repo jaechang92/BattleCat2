@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour {
 
     public float money;
     public Text moneyText;
+
+    public Text mainDescriptionText;
+    public List<string> descriptionText;
+    private int lastnum;
+
     private UserStatus userStatus;
 
     public int characterSize = 4;
@@ -101,5 +106,16 @@ public class GameManager : MonoBehaviour {
             characterSize++;
             characterSlot.Add(monster);
         }
+    }
+
+    public void MainDescriptionTextClick()
+    {
+        int rand = Random.Range(0, descriptionText.Count - 1);
+        while (lastnum == rand)
+        {
+            rand = Random.Range(0, descriptionText.Count - 1);
+        }
+        lastnum = rand;
+        mainDescriptionText.text = descriptionText[lastnum];
     }
 }
