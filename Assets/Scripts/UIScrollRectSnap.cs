@@ -31,7 +31,7 @@ public class UIScrollRectSnap : MonoBehaviour
     private int btnDistance;
     private int stageMaskDistance;
     private int cBtnDistance;
-    private int pBtnDistance;
+    public int pBtnDistance;
     public int minButtonNum; // To hold the number of the button, with smallest distance to center
 
     private OutLineControll[] otcArray = new OutLineControll[3];
@@ -119,7 +119,7 @@ public class UIScrollRectSnap : MonoBehaviour
         {
             if (minDistance == pDistance[i])
             {
-                Debug.Log("파워업스크롤");
+
                 minButtonNum = i;
                 
                 //InitSnap();

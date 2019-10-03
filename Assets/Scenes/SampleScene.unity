@@ -796,6 +796,7 @@ MonoBehaviour:
   - {fileID: 1941614819}
   battleStartBtn: {fileID: 2143228504}
   dragging: 0
+  pBtnDistance: 0
   minButtonNum: 0
   slotImage:
   - {fileID: 414303641}
@@ -9482,7 +9483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1301732033
 RectTransform:
   m_ObjectHideFlags: 0
