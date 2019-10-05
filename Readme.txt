@@ -1,6 +1,7 @@
-﻿git push origin master
-git pull origin master
+﻿git init
 git remote add origin + repository address
+git push origin master
+git pull origin master
 git status
 git add .
 git commit -m ""
