@@ -130,6 +130,7 @@ public class UIScrollRectSnap : MonoBehaviour
         if (!dragging)
         {
             LerpToBtn(panel4, minButtonNum * -pBtnDistance);
+            GameManager.instance.powerUpDescriptionText.text = GameManager.instance.characterSlot[minButtonNum].monsterDescription;
         }
     }
 

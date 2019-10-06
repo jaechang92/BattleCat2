@@ -15,6 +15,7 @@ public class CreateObject : MonoBehaviour {
 
     private Color waitColor = Color.gray;
     private Color originColor = Color.white;
+    public int deltaH;
     private void Start()
     {
         UIManager.EndGameEvent += EndGame;
@@ -35,7 +36,8 @@ public class CreateObject : MonoBehaviour {
 
     public void CreateMonster(int num)
     {
-        float rand = Random.Range(0, 0.3f);
+
+        float rand = Random.Range(0, deltaH/10000);
         Vector3 rVector = new Vector2(0, rand);
         int _cost = monster[num].GetComponent<CharacterState>().cost;
         if (_cost < GameManager.instance.money && slotImage[num].GetComponent<Image>().color != waitColor)

@@ -11,7 +11,8 @@ public class Monster
     public string monsterName; // 몬스터의 이름. 중복 가능.
     public string monsterDescription; // 몬스터의 설명
 
-    public Sprite monsterIcon; // 몬스터의 아이콘.
+    public Sprite monsterPowerUpIcon; // 몬스터의 기본 아이콘.
+    public Sprite monsterIcon; // 몬스터의 금액 아이콘.
     public GameObject monsterPrefab;
 
     public int lv;

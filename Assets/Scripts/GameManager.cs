@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour {
 
     public Text mainDescriptionText;
     public List<string> descriptionText;
+    public Text powerUpDescriptionText;
+
     private int lastnum;
 
     private UserStatus userStatus;

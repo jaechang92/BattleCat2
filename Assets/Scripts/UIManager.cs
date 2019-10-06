@@ -159,7 +159,7 @@ public class UIManager : MonoBehaviour {
     {
         dragging = true;
         dragObj.SetActive(true);
-        Debug.Log("??????????");
+        //Debug.Log("??????????");
         
         nowSprite = this.GetComponent<UIScrollRectSnap>().characterBtn[i].gameObject.GetComponent<Image>().sprite;
         dragObj.GetComponent<Image>().sprite = nowSprite;
@@ -171,11 +171,11 @@ public class UIManager : MonoBehaviour {
     {
         dragging = false;
         dragObj.SetActive(false);
-
+        Debug.Log(dragObj.transform.position);
         for (int i = 0; i < 5; i++)
         {
-            if (222 + (i*120) <= dragObj.transform.position.x && dragObj.transform.position.x <= 322 + (i * 120) &&
-                421 <= dragObj.transform.position.y && dragObj.transform.position.y <= 521)
+            if (290 + (i*140) <= dragObj.transform.position.x && dragObj.transform.position.x <= 390 + (i * 140) &&
+                510 <= dragObj.transform.position.y && dragObj.transform.position.y <= 610)
             {
                 Debug.Log("Get" + i);
                 //GameManager.instance.characterSlot[i] = nowClickCState;

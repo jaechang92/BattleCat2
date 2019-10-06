@@ -13,7 +13,7 @@ public class UIImage : MonoBehaviour {
         Debug.Log("get Img");
         for (int i = 0; i < GameManager.instance.characterSize; i++)
         {
-            images[i].sprite = GameManager.instance.characterSlot[i].monsterIcon;
+            images[i].sprite = GameManager.instance.characterSlot[i].monsterPowerUpIcon;
                 //.Add(GameManager.instance.characterSlot[i].monsterIcon);
         }
     }
