@@ -26,7 +26,7 @@ public class ChildControll : MonoBehaviour {
             nowRect.anchoredPosition = new Vector2((cellSize.x + spacing.x) * i, 0);
         }
         usrs = UIManager.instance.GetComponent<UIScrollRectSnap>();
-        usrs.pBtnDistance = (int)(cellSize.x + spacing.x + TestSize.x / 2);
+        //usrs.pBtnDistance = (int)(cellSize.x + spacing.x + TestSize.x / 2);
     }
 
     private void Update()

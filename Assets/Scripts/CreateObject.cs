@@ -42,7 +42,9 @@ public class CreateObject : MonoBehaviour {
         int _cost = monster[num].GetComponent<CharacterState>().cost;
         if (_cost < GameManager.instance.money && slotImage[num].GetComponent<Image>().color != waitColor)
         {
-            GameObject obj = Instantiate(monster[num], this.gameObject.transform);
+            SoundControll.instance.ClickSoundPlay(0);
+            SoundControll.instance.ClickSoundPlay(1, 0.2f);
+            GameObject obj = Instantiate(monster[num].GetComponent<CharacterState>().prefab, this.gameObject.transform);
             obj.GetComponent<Transform>().position = createPoint.position + rVector;
             
             GameManager.instance.money -= _cost;

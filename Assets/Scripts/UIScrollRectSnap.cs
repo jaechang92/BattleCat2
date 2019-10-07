@@ -16,6 +16,7 @@ public class UIScrollRectSnap : MonoBehaviour
     public RectTransform center;
     public RectTransform center2;
     public RectTransform center3;
+    public RectTransform center4;
     public List<GameObject> charaterObj;
     public List<Button> characterBtn;
     public List<Image> images;
@@ -39,6 +40,8 @@ public class UIScrollRectSnap : MonoBehaviour
     private CreateObject obPool;
 
     public List<Image> slotImage; // 인게임슬롯이미지
+    
+
     void Start()
     {
         foreach (var item in charaterObj)
@@ -74,7 +77,8 @@ public class UIScrollRectSnap : MonoBehaviour
         btnDistance = (int)Mathf.Abs(btn[1].GetComponent<RectTransform>().anchoredPosition.x - btn[0].GetComponent<RectTransform>().anchoredPosition.x);
         stageMaskDistance = (int)Mathf.Abs(stageMaskBtn[1].GetComponent<RectTransform>().anchoredPosition.x - stageMaskBtn[0].GetComponent<RectTransform>().anchoredPosition.x);
         cBtnDistance = (int)Mathf.Abs(characterBtn[1].GetComponent<RectTransform>().anchoredPosition.x - characterBtn[0].GetComponent<RectTransform>().anchoredPosition.x);
-        pBtnDistance = (int)Mathf.Abs(powerUpBtn[1].GetComponent<RectTransform>().anchoredPosition.x - powerUpBtn[0].GetComponent<RectTransform>().anchoredPosition.x);
+        //pBtnDistance = (int)Mathf.Abs(powerUpBtn[1].GetComponent<RectTransform>().anchoredPosition.x - powerUpBtn[0].GetComponent<RectTransform>().anchoredPosition.x);
+        pBtnDistance = 270;
         obPool = GameManager.instance.obPool.GetComponent<CreateObject>();
 
     }
@@ -105,12 +109,14 @@ public class UIScrollRectSnap : MonoBehaviour
         }
 
     }
+    int TempNum;
 
     public void PowerUpBtn()
     {
+        TempNum = minButtonNum;
         for (int i = 0; i < powerUpBtn.Count; i++)
         {
-            pDistance[i] = Mathf.Abs(center.transform.position.x - powerUpBtn[i].transform.position.x);
+            pDistance[i] = Mathf.Abs(center4.transform.position.x - powerUpBtn[i].transform.position.x);
         }
 
         float minDistance = Mathf.Min(pDistance); // Get the min distance
@@ -126,17 +132,22 @@ public class UIScrollRectSnap : MonoBehaviour
                 //images[i].raycastTarget = true;
             }
         }
+        if (minButtonNum != TempNum)
+        {
+            SoundControll.instance.ClickSoundPlay(2);
+        }
 
         if (!dragging)
         {
             LerpToBtn(panel4, minButtonNum * -pBtnDistance);
             GameManager.instance.powerUpDescriptionText.text = GameManager.instance.characterSlot[minButtonNum].monsterDescription;
+            CheckUpGrade.instance.SetNeedXp(GameManager.instance.characterSlot[minButtonNum].exp);
         }
     }
 
-
     public void CharacterBtn()
     {
+        TempNum = minButtonNum;
         for (int i = 0; i < characterBtn.Count; i++)
         {
             cDistance[i] = Mathf.Abs(center2.transform.position.x - characterBtn[i].transform.position.x);
@@ -153,6 +164,11 @@ public class UIScrollRectSnap : MonoBehaviour
                 images[i].raycastTarget = true;
             }
         }
+
+        if (minButtonNum != TempNum)
+        {
+            SoundControll.instance.ClickSoundPlay(2);
+        }
         
         if (!dragging)
         {
@@ -162,6 +178,7 @@ public class UIScrollRectSnap : MonoBehaviour
 
     public void StageMaskBtn()
     {
+        TempNum = minButtonNum;
         for (int i = 0; i < stageMaskBtn.Length; i++)
         {
             smDistance[i] = Mathf.Abs(center3.transform.position.x - stageMaskBtn[i].transform.position.x);
@@ -181,8 +198,11 @@ public class UIScrollRectSnap : MonoBehaviour
                 otcArray[minButtonNum].selectThis = true;
             }
         }
+        if (minButtonNum != TempNum)
+        {
+            SoundControll.instance.ClickSoundPlay(2);
+        }
 
-        
         if (!dragging)
         {
             LerpToBtn(panel3, minButtonNum * -stageMaskDistance);
@@ -194,6 +214,7 @@ public class UIScrollRectSnap : MonoBehaviour
 
     public void StageBtn()
     {
+        TempNum = minButtonNum;
         for (int i = 0; i < btn.Length; i++)
         {
             distance[i] = Mathf.Abs(center.transform.position.x - btn[i].transform.position.x);
@@ -208,7 +229,10 @@ public class UIScrollRectSnap : MonoBehaviour
                 minButtonNum = i;
             }
         }
-
+        if (minButtonNum != TempNum)
+        {
+            SoundControll.instance.ClickSoundPlay(2);
+        }
         if (!dragging)
         {
             LerpToBtn(panel,minButtonNum * -btnDistance);
@@ -249,20 +273,31 @@ public class UIScrollRectSnap : MonoBehaviour
 
     public void StartBattle()
     {
-        UIManager.instance.StageClick(minButtonNum);
-        InitObjectPool();
+
+        UIManager.instance.UIList[3].GetComponent<Animator>().SetTrigger("StartBattle");
+        SoundControll.instance.BackgoundSoundChange(2);
+
+
+        StartCoroutine(DelayStart());
+        
     }
 
     private void InitObjectPool()
     {
         for (int i = 0; i < obPool.monster.Count; i++)
         {
-            obPool.monster[i].GetComponent<CharacterState>().UpDateState(GameManager.instance.characterSlot[i]);
-            slotImage[i].GetComponent<Image>().sprite = GameManager.instance.characterSlot[i].monsterIcon;
+            obPool.monster[i].GetComponent<CharacterState>().UpDateState(GameManager.instance.characterSlot[GameManager.instance.slot[i].GetComponent<Slot>().num]);
+            slotImage[i].GetComponent<Image>().sprite = GameManager.instance.characterSlot[GameManager.instance.slot[i].GetComponent<Slot>().num].monsterIcon;
         }
     }
 
-    
+    IEnumerator DelayStart()
+    {
+        yield return new WaitForSeconds(4.232f);
+        UIManager.instance.StageClick(minButtonNum);
+        InitObjectPool();
+        SoundControll.instance.BackgoundSoundChange(3);
+    }
     
 
 }

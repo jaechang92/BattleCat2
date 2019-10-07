@@ -33,7 +33,11 @@ public class UserInfo : MonoBehaviour
         }
 
     }
-
+    
+    private void Update()
+    {
+        xpText.text = userXp.ToString();
+    }
     
 
     public void GetXp(int xp)
@@ -42,6 +46,11 @@ public class UserInfo : MonoBehaviour
         xpText.text = userXp.ToString();
     }
 
+    public void MinusXp(int xp)
+    {
+        userXp -= xp;
+        xpText.text = userXp.ToString();
+    }
  
 
 }

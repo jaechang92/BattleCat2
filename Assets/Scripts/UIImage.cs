@@ -6,9 +6,16 @@ using UnityEngine.UI;
 public class UIImage : MonoBehaviour {
 
     public List<Image> images;
+    public List<Text> needXpText;
 
+
+    public void PowerUpUIinit()
+    {
+        ImageGet();
+        XpText();
+    }
     
-    public void ImageGet()
+    private void ImageGet()
     {
         Debug.Log("get Img");
         for (int i = 0; i < GameManager.instance.characterSize; i++)
@@ -17,4 +24,13 @@ public class UIImage : MonoBehaviour {
                 //.Add(GameManager.instance.characterSlot[i].monsterIcon);
         }
     }
+
+    private void XpText()
+    {
+        for (int i = 0; i < GameManager.instance.characterSize; i++)
+        {
+            needXpText[i].text = GameManager.instance.characterSlot[i].exp.ToString();
+        }
+    }
+
 }

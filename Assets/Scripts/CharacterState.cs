@@ -16,6 +16,7 @@ public class CharacterState : MonoBehaviour {
     public int rewardMoney;
     public int cost;
     public int createTime;
+    public GameObject prefab;
     public bool isDie = false;
 
     public int objSizePer2;
@@ -155,7 +156,7 @@ public class CharacterState : MonoBehaviour {
         }
     }
 
-    private void Attacked()
+    public void Attacked()
     {
         if (currentTime > attackDelay)
         {
@@ -163,11 +164,11 @@ public class CharacterState : MonoBehaviour {
             animator.SetTrigger("Attacked");
             Debug.Log("공격");
             hitAll = Physics2D.RaycastAll(ray.origin, Vector2.left, range, targetMask);
-            GetDamageAll();
+            //GetDamageAll();
         }
     }
 
-    private void GetDamageAll()
+    public void GetDamageAll()
     {
         foreach (var item in hitAll)
         {
@@ -180,8 +181,11 @@ public class CharacterState : MonoBehaviour {
     {
         Debug.Log("Hit");
         this.hp -= damage;
+        if (isTower)
+        {
+            SoundControll.instance.HitSoundPlay(0);
+        }
         
-
         if (hp <= 0  && !isTower)
         {
             DieAnimation();
@@ -209,7 +213,9 @@ public class CharacterState : MonoBehaviour {
         attackDelay = monster.attackDelay;
         cost = monster.cost;
         createTime = monster.createTime;
-
+        prefab = monster.monsterPrefab;
     }
+
+    
 
 }

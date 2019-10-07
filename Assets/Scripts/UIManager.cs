@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour {
     //------------------------------------------------------
 
     public GameObject UIImg;
+    private UIImage pUi; // powerup UIImag
 
     public List<GameObject> UIBtnControl;
 
@@ -80,9 +81,10 @@ public class UIManager : MonoBehaviour {
 
 
 
-        
+        pUi = UIImg.GetComponent<UIImage>();
 
-        
+
+
         dragObj.SetActive(false);
     }
 	
@@ -105,6 +107,7 @@ public class UIManager : MonoBehaviour {
         //GameManager.instance.obPool.GetComponent<CreateObject>().SetUpMonster(GameManager.instance.characterSlot);
         GameManager.instance.initAll();
         StartGameEvnet();
+        
 
         UIList[2].SetActive(false);
         switch (name)
@@ -148,7 +151,7 @@ public class UIManager : MonoBehaviour {
         UIBtnControl[UIBtnControl.Count - 1].SetActive(true);
         EndGameEvent();
         UIList[2].SetActive(true);
-
+        SoundControll.instance.BackgoundSoundChange(1);
 
     }
 
@@ -174,16 +177,26 @@ public class UIManager : MonoBehaviour {
         Debug.Log(dragObj.transform.position);
         for (int i = 0; i < 5; i++)
         {
-            if (290 + (i*140) <= dragObj.transform.position.x && dragObj.transform.position.x <= 390 + (i * 140) &&
-                510 <= dragObj.transform.position.y && dragObj.transform.position.y <= 610)
+            if (GameManager.instance.slot[i].GetComponent<Transform>().position.x - 50 <= dragObj.transform.position.x &&
+                GameManager.instance.slot[i].GetComponent<Transform>().position.x + 50 >= dragObj.transform.position.x &&
+                GameManager.instance.slot[i].GetComponent<Transform>().position.y - 50 <= dragObj.transform.position.y &&
+                GameManager.instance.slot[i].GetComponent<Transform>().position.y + 50 >= dragObj.transform.position.y)
             {
                 Debug.Log("Get" + i);
-                //GameManager.instance.characterSlot[i] = nowClickCState;
                 GameManager.instance.slot[i].GetComponent<Image>().sprite = nowSprite;
                 GameManager.instance.obPool.GetComponent<CreateObject>().monster[i].GetComponent<CharacterState>().UpDateState(Database.instance.myMonsterList[startclick]);
-
-
+                GameManager.instance.slot[i].GetComponent<Slot>().num = startclick;
             }
+
+            //if (290 + (i*140) <= dragObj.transform.position.x && dragObj.transform.position.x <= 390 + (i * 140) &&
+            //    510 <= dragObj.transform.position.y && dragObj.transform.position.y <= 610)
+            //{
+                
+            //    //GameManager.instance.characterSlot[i] = nowClickCState;
+               
+
+
+            //}
 
         }
 
@@ -201,6 +214,7 @@ public class UIManager : MonoBehaviour {
     {
         Debug.Log("버튼 딜레이 코루틴");
         yield return new WaitForSeconds(0.5f);
+        SoundControll.instance.ClickSoundPlay(0);
         switch (obj)
         {
             case "Start":
@@ -217,6 +231,7 @@ public class UIManager : MonoBehaviour {
 
                 break;
             case "World":
+                SoundControll.instance.BackgoundSoundChange(1);
                 foreach (GameObject item in UIBtnControl)
                 {
                     item.SetActive(false);
@@ -238,6 +253,8 @@ public class UIManager : MonoBehaviour {
                 }
                 UIList[2].SetActive(true);
                 UIList[3].SetActive(true);
+
+
                 UIBtnControl.Add(UIList[3]);
                 stageName.text = "스테이지 선택";
                 break;
@@ -259,8 +276,10 @@ public class UIManager : MonoBehaviour {
                 UIList[2].SetActive(true);
                 UIList[6].SetActive(true);
                 UIBtnControl.Add(UIList[6]);
-                UIImg.GetComponent<UIImage>().ImageGet();
+                pUi.PowerUpUIinit();
                 stageName.text = "파워 업";
+                CheckUpGrade.instance.GetMyXp();
+
                 break;
             case "BackSapce":
                 UIBtnControl[UIBtnControl.Count - 1].SetActive(false);
@@ -270,13 +289,33 @@ public class UIManager : MonoBehaviour {
                 {
                     stageName.text = "고양이 기지";
                 }
+                if (UIBtnControl[UIBtnControl.Count - 1].name == "StageMask")
+                {
+                    SoundControll.instance.BackgoundSoundChange(0);
+                }
+                
+
                 break;
             default:
                 break;
         }
     }
 
+    public void UpGrade()
+    {
+        int i = this.gameObject.GetComponent<UIScrollRectSnap>().minButtonNum;
+        if (GameManager.instance.GetComponent<UserInfo>().userXp >= GameManager.instance.characterSlot[i].exp)
+        {
+            GameManager.instance.characterSlot[i].lv++;
+            GameManager.instance.characterSlot[i].attack *= 2;
+            GameManager.instance.characterSlot[i].hp *= 3;
+            GameManager.instance.GetComponent<UserInfo>().MinusXp(GameManager.instance.characterSlot[i].exp);
+            GameManager.instance.characterSlot[i].exp *= 2;
 
+            CheckUpGrade.instance.GetMyXp();
+            pUi.needXpText[i].text = GameManager.instance.characterSlot[i].exp.ToString();
+        }
+    }
 
 
 }
