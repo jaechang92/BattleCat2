@@ -131,19 +131,34 @@ public class UIManager : MonoBehaviour {
 
     public void GetMoney(int money)
     {
-        rewardMoney.text = money.ToString();
+        rewardMoney.text = "경험치   " +money.ToString() + "   획득!!";
     }
 
 
     public void EndStage()
     {
-        Stage[ativeStage].SetActive(false);
-        ativeStage = -1;
-        Debug.Log("끝");
+        if (ativeStage != -1)
+        {
+            Stage[ativeStage].SetActive(false);
+            ativeStage = -1;
+            Debug.Log("끝");
+        }
+        
     }
 
     public void OKButton()
     {
+        if (GameManager.instance.isTutorial)
+        {
+            UIManager.instance.UIList[7].SetActive(true);
+            GameManager.instance.isTutorial = false;
+            EndStage();
+            UIList[4].SetActive(false);
+            
+
+            EndGameEvent();
+            return;
+        }
         EndStage();
         UIList[4].SetActive(false);
         UIBtnControl[UIBtnControl.Count - 1].SetActive(false);
@@ -152,6 +167,10 @@ public class UIManager : MonoBehaviour {
         EndGameEvent();
         UIList[2].SetActive(true);
         SoundControll.instance.BackgoundSoundChange(1);
+        GameManager.instance.LVupChange.Init();
+        GameManager.instance.moneyText.gameObject.SetActive(true);
+        GameManager.instance.gameStart = false;
+        
 
     }
 
@@ -218,13 +237,29 @@ public class UIManager : MonoBehaviour {
         switch (obj)
         {
             case "Start":
-                foreach (GameObject item in UIBtnControl)
+                if (GameManager.instance.isTutorial)
                 {
-                    item.SetActive(false);
+                    foreach (GameObject item in UIBtnControl)
+                    {
+                        item.SetActive(false);
+                    }
+                    
+                    UIBtnControl.Add(UIList[1]);
+                    UIList[2].SetActive(true);
+                    UIBtnControl.Add(UIList[2]);
+                    UIList[3].SetActive(true);
+                    UIBtnControl.Add(UIList[3]);
+                    
                 }
-                UIList[1].SetActive(true);
-                UIBtnControl.Add(UIList[1]);
-
+                else
+                {
+                    foreach (GameObject item in UIBtnControl)
+                    {
+                        item.SetActive(false);
+                    }
+                    UIList[1].SetActive(true);
+                    UIBtnControl.Add(UIList[1]);
+                }
 
                 break;
             case "Option":
@@ -316,6 +351,18 @@ public class UIManager : MonoBehaviour {
             pUi.needXpText[i].text = GameManager.instance.characterSlot[i].exp.ToString();
         }
     }
+
+    public void TutorialOkBtn()
+    {
+        Time.timeScale = 1;
+        GameManager.instance.tutorialNum++;
+        GameManager.instance.tutorialFilter.SetActive(false);
+        SoundControll.instance.ClickSoundPlay(0);
+        GameManager.instance.arrowUp.SetActive(false);
+        GameManager.instance.arrowDown.SetActive(false);
+        
+    }
+
 
 
 }

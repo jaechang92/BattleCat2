@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 61028195427154544}
   m_Layer: 9
   m_Name: 3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,6 +215,7 @@ MonoBehaviour:
   currentTime: 0
   animator: {fileID: 0}
   towerText: {fileID: 0}
+  isRight: 0
 --- !u!212 &212760321175072396
 SpriteRenderer:
   m_ObjectHideFlags: 1

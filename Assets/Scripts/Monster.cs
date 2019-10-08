@@ -19,9 +19,9 @@ public class Monster
     public int exp;
     public int hp;
     public int attack;
-    public int range;
+    public float range;
     public int defense;
-    public int speed;
+    public float speed;
     public int attackDelay;
     public int critical;
     public int maxExp;
@@ -29,7 +29,7 @@ public class Monster
     public int createTime;
 
 
-    public Monster(int _monsterID, string _monsterName, string _monsterDes, int _lv, int _exp, int _hp, int _attack, int _defense, int _speed, int _critical ,int _range, int _attackDelay, int _cost, int _createTime)
+    public Monster(int _monsterID, string _monsterName, string _monsterDes, int _lv, int _exp, int _hp, int _attack, int _defense, float _speed, int _critical ,int _attackDelay, float _range, int _cost, int _createTime)
     {
         monsterName = _monsterName;
         monsterDescription = _monsterDes;
@@ -50,6 +50,7 @@ public class Monster
         //monsterPrefab = Resources.Load("Prefabs/Model/" + monsterID.ToString(), typeof(GameObject)) as GameObject;
         //Debug.Log(monsterPrefab);
     }
+
 
     public Monster MonsterDeepCopy()
     {

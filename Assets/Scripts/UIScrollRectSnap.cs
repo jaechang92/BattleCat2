@@ -284,7 +284,7 @@ public class UIScrollRectSnap : MonoBehaviour
 
     private void InitObjectPool()
     {
-        for (int i = 0; i < obPool.monster.Count; i++)
+        for (int i = 0; i < obPool.monster.Count-1; i++)
         {
             obPool.monster[i].GetComponent<CharacterState>().UpDateState(GameManager.instance.characterSlot[GameManager.instance.slot[i].GetComponent<Slot>().num]);
             slotImage[i].GetComponent<Image>().sprite = GameManager.instance.characterSlot[GameManager.instance.slot[i].GetComponent<Slot>().num].monsterIcon;
@@ -295,8 +295,28 @@ public class UIScrollRectSnap : MonoBehaviour
     {
         yield return new WaitForSeconds(4.232f);
         UIManager.instance.StageClick(minButtonNum);
-        InitObjectPool();
+        GameManager.instance.gameStart = true;
+        
+        if (GameManager.instance.isTutorial)
+        {
+            obPool.monster[0].GetComponent<CharacterState>().UpDateState(GameManager.instance.characterSlot[GameManager.instance.slot[0].GetComponent<Slot>().num]);
+            slotImage[0].GetComponent<Image>().sprite = GameManager.instance.characterSlot[GameManager.instance.slot[0].GetComponent<Slot>().num].monsterIcon;
+        }
+        else
+        {
+            InitObjectPool();
+        }
         SoundControll.instance.BackgoundSoundChange(3);
+
+
+        if (GameManager.instance.isTutorial)
+        {
+            Debug.Log("이번판은 튜토리얼입니다.");
+            GameManager.instance.Tutorial();
+            GameManager.instance.tutorialStart = true;
+            GameManager.instance.arrowUp.SetActive(false);
+            GameManager.instance.arrowDown.SetActive(false);
+        }
     }
     
 

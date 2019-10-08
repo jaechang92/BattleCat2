@@ -34,6 +34,7 @@ public class FilledAmount : MonoBehaviour {
         if (image.fillAmount >= 1)
         {
             this.gameObject.SetActive(false);
+            SoundControll.instance.ClickSoundPlay(3);
         }
         
     }

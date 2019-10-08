@@ -166,3 +166,7 @@ C:\Users\컬러링\Desktop\newProject\obj\Debug\Assembly-CSharp.csproj.CoreCompi
 C:\Users\컬러링\Desktop\newProject\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\컬러링\Desktop\newProject\obj\Debug\Assembly-CSharp.dll
 C:\Users\컬러링\Desktop\newProject\obj\Debug\Assembly-CSharp.pdb
+C:\Users\kim\Desktop\Battle Cats\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\kim\Desktop\Battle Cats\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\kim\Desktop\Battle Cats\obj\Debug\Assembly-CSharp.dll
+C:\Users\kim\Desktop\Battle Cats\obj\Debug\Assembly-CSharp.pdb

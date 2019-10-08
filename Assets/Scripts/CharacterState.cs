@@ -7,11 +7,11 @@ public class CharacterState : MonoBehaviour {
 
     //public value
 
-    public int moveSpeed;
+    public float moveSpeed;
     [Range(0,50000)]
     public int hp;
     public int damage;
-    public int range;
+    public float range;
     public int attackDelay;
     public int rewardMoney;
     public int cost;
@@ -39,7 +39,7 @@ public class CharacterState : MonoBehaviour {
     public RaycastHit2D[] hitAll;
     public Text towerText;
     private int maxHp;
-    
+    public bool isRight = false;
 
     public void StartBattle()
     {
@@ -50,7 +50,30 @@ public class CharacterState : MonoBehaviour {
     {
         isDie = false;
         hp = maxHp;
+    }
+
+    public void initState(int num)
+    {
         
+        isDie = false;
+        hp = GameManager.instance.characterSlot[num].hp;
+        damage = GameManager.instance.characterSlot[num].attack;
+
+        if (isRight)
+        {
+            this.gameObject.transform.localScale.Set(-1,1,1);
+            //range = -GameManager.instance.characterSlot[num].range;
+            moveSpeed = -GameManager.instance.characterSlot[num].speed;
+            this.gameObject.layer = 10;
+            this.gameObject.tag = "Enemy";
+            targetMask = 1 << 9;
+        }
+        else
+        {
+            range = GameManager.instance.characterSlot[num].range;
+            moveSpeed = GameManager.instance.characterSlot[num].speed;
+        }
+
     }
 
 
@@ -104,10 +127,13 @@ public class CharacterState : MonoBehaviour {
             if (hp <= 0)
             {
                 hp = 0;
+                GameManager.instance.moneyText.gameObject.SetActive(false);
                 UIManager.instance.UIList[4].SetActive(true);
                 UIManager.instance.GetMoney(rewardMoney);
                 UserInfo.instance.GetXp(rewardMoney);
                 isDie = true;
+                SoundControll.instance.GetComponent<AudioSource>().clip = null;
+                SoundControll.instance.ClickSoundPlay(4);
             }
         }
     }
@@ -134,7 +160,7 @@ public class CharacterState : MonoBehaviour {
         }
         
 
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector2.left, range, targetMask);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, range, targetMask);
         Debug.DrawRay(ray.origin, ray.direction * range, Color.red);
         if (isTower)
         {
@@ -142,8 +168,11 @@ public class CharacterState : MonoBehaviour {
         }
         else
         {
+            
+
             if (hit && hit.collider.tag == targetTag)
             {
+                
                 isMove = false;
                 animator.SetBool("IsWalk", false);
                 Attacked();

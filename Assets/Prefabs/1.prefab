@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 61374366739811286}
   m_Layer: 9
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1591664465033346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.62, y: -1.7, z: 0}
+  m_LocalPosition: {x: -16.74, y: -1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4683072080642758}
@@ -203,6 +203,7 @@ MonoBehaviour:
   currentTime: 0
   animator: {fileID: 0}
   towerText: {fileID: 0}
+  isRight: 0
 --- !u!114 &114723270543117268
 MonoBehaviour:
   m_ObjectHideFlags: 1
