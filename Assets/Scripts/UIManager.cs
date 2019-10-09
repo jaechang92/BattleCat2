@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour {
     public List<GameObject> UIList;
     public List<GameObject> Stage;
     public int ativeStage = -1;
+    public GameObject BattleUI;
 
     public Text rewardMoney;
     public Text stageName;
@@ -114,10 +115,13 @@ public class UIManager : MonoBehaviour {
         {
             case 0:
                 GetStage(0);
-
                 Debug.Log("한국 스테이지");
                 break;
 
+            case 1:
+                GetStage(1);
+                Debug.Log("몽골 스테이지");
+                break;
             default:
                 break;
         }
@@ -148,9 +152,10 @@ public class UIManager : MonoBehaviour {
 
     public void OKButton()
     {
+        BattleUI.SetActive(false);
         if (GameManager.instance.isTutorial)
         {
-            UIManager.instance.UIList[7].SetActive(true);
+            UIList[7].SetActive(true);
             GameManager.instance.isTutorial = false;
             EndStage();
             UIList[4].SetActive(false);

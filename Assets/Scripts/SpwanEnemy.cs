@@ -14,7 +14,7 @@ public class SpwanEnemy : MonoBehaviour {
     private Vector3 Vector3;
 	// Use this for initialization
 	void Start () {
-        Vector3 = new Vector3(-5, -2, 0);
+        Vector3 = new Vector3(-7, -2, 0);
 	}
 	
 	// Update is called once per frame
@@ -32,8 +32,11 @@ public class SpwanEnemy : MonoBehaviour {
                 obj.GetComponent<CharacterState>().isRight = true;
                 obj.GetComponent<CharacterState>().isEnemy = true;
                 obj.GetComponent<CharacterState>().initState(0);
+                obj.transform.localScale = new Vector3(-1, 1, 1);
                 obj.GetComponentInChildren<SpriteRenderer>().sortingOrder = (int)(rand * -100000);
                 currentTime = 0;
+
+                GameManager.instance.obPool.GetComponent<CreateObject>().createMonster.Add(obj);
             }
             else
             {

@@ -61,7 +61,8 @@ public class CharacterState : MonoBehaviour {
 
         if (isRight)
         {
-            this.gameObject.transform.localScale.Set(-1,1,1);
+            Debug.Log("isright");
+            //this.gameObject.transform.localScale.Set(-1, 1, 1);
             //range = -GameManager.instance.characterSlot[num].range;
             moveSpeed = -GameManager.instance.characterSlot[num].speed;
             this.gameObject.layer = 10;
@@ -100,6 +101,7 @@ public class CharacterState : MonoBehaviour {
         {
             targetTag = "Player";
         }
+
 
 
         UIManager.StartGameEvnet += StartBattle;
@@ -210,6 +212,10 @@ public class CharacterState : MonoBehaviour {
     {
         Debug.Log("Hit");
         this.hp -= damage;
+        if (hp <=0)
+        {
+            hp = 0;
+        }
         if (isTower)
         {
             SoundControll.instance.HitSoundPlay(0);
@@ -226,6 +232,8 @@ public class CharacterState : MonoBehaviour {
         animator.SetTrigger("Die");
         isDie = true;
         Debug.Log("Die");
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        //Destroyed();
     }
 
     public void Destroyed()

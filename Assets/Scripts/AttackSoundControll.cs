@@ -14,4 +14,8 @@ public class AttackSoundControll : MonoBehaviour
         SoundControll.instance.HitSoundPlay(1);
     }
 
+    public void Destory()
+    {
+        Destroy(this.gameObject);
+    }
 }

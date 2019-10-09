@@ -67,7 +67,11 @@ public class GameManager : MonoBehaviour {
 
         }
 
-        
+        foreach (var item in UIManager.instance.Stage)
+        {
+            item.SetActive(false);
+        }
+
         Debug.Log("초기화");
     }
 

@@ -294,6 +294,15 @@ public class UIScrollRectSnap : MonoBehaviour
     IEnumerator DelayStart()
     {
         yield return new WaitForSeconds(4.232f);
+        UIManager.instance.BattleUI.SetActive(true);
+
+        for (int i = 0; i < UIManager.instance.Stage.Count; i++)
+        {
+            UIManager.instance.Stage[i].SetActive(false);
+            Debug.Log(UIManager.instance.Stage[i].name);
+
+        }
+
         UIManager.instance.StageClick(minButtonNum);
         GameManager.instance.gameStart = true;
         
@@ -316,7 +325,11 @@ public class UIScrollRectSnap : MonoBehaviour
             GameManager.instance.tutorialStart = true;
             GameManager.instance.arrowUp.SetActive(false);
             GameManager.instance.arrowDown.SetActive(false);
+            btn[1].SetActive(true);
         }
+
+        
+
     }
     
 
